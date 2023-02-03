@@ -1,0 +1,419 @@
+<?php
+
+/**
+ * @file
+ * Contains chat_livehelperchat.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Config\ImmutableConfig;
+
+/**
+ * Implements hook_help().
+ */
+function chat_livehelperchat_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.chat_livehelperchat':
+      $output = file_get_contents(drupal_get_path('module', 'chat_livehelperchat') . '/README.md');
+      return '<pre>' . $output . '</pre>';
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function chat_livehelperchat_page_attachments(array &$attachments) {
+
+  $currentUser = \Drupal::currentUser();
+  $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+  $clhc_type_settings = $config->get('clhc_type_settings');
+  if ($clhc_type_settings === "0") {
+    $url = $config->get('clhc_url');
+    if (!empty($url) && chat_livehelperchat_check_visibility_pages($config) && chat_livehelperchat_check_visibility_content_type(NULL, $config) && chat_livehelperchat_check_visibility_roles($currentUser, $config)) {
+
+      $lang = chat_livehelperchat_current_language_mapping();
+      $js_chat = chat_livehelperchat_generate_script_lhcchat($config, $lang);
+      $js_faq = chat_livehelperchat_generate_script_lhcfaq($config, $lang);
+      $javascript_header = "\n" . $js_chat . "\n" . $js_faq;
+      $attachments['#attached']['html_head'][] = [
+        [
+          '#tag' => 'script',
+          '#value' => Markup::create($javascript_header),
+          '#weight' => -1,
+        ],
+        'livehelperchat_script',
+      ];
+
+    }
+  }
+  elseif ($clhc_type_settings === "1") {
+    $javascript_header = $config->get('clhc_script_codejs');
+    if (!empty($javascript_header) && chat_livehelperchat_check_visibility_pages($config) && chat_livehelperchat_check_visibility_content_type(NULL, $config) && chat_livehelperchat_check_visibility_roles($currentUser, $config)) {
+      $attachments['#attached']['html_head'][] = [
+        [
+          '#tag' => 'script',
+          '#value' => Markup::create($javascript_header),
+          '#weight' => -1,
+        ],
+        'livehelperchat_script',
+      ];
+    }
+  }
+}
+
+/**
+ * Check visibility of chat in pages.
+ *
+ * @param \Drupal\Core\Config\ImmutableConfig $config
+ *   Object of type configuration livehelperchatformsettings.
+ *
+ * @return bool
+ *   Return TRUE if chat show, otherwise return FALSE.
+ */
+function chat_livehelperchat_check_visibility_pages(ImmutableConfig $config = NULL) {
+  static $bool_pagematch;
+  if (!isset($bool_pagematch)) {
+    if (empty($config)) {
+      $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+    }
+    $clhc_visibility = $config->get('clhc_visibility');
+    $clhc_pages = $config->get('clhc_pages');
+
+    if (!empty($clhc_pages)) {
+      if ($clhc_visibility < 2) {
+
+        $path_current = \Drupal::service('path.current')->getPath();
+        $path = \Drupal::service('path_alias.manager')->getAliasByPath($path_current);
+        $bool_pagematch = chat_livehelperchat_match_pathes($path, $clhc_pages);
+        if ($path != $path_current) {
+          $bool_pagematch = $bool_pagematch || chat_livehelperchat_match_pathes($path_current, $clhc_pages);
+        }
+        $bool_pagematch = !($clhc_visibility xor $bool_pagematch);
+      }
+      elseif (\Drupal::moduleHandler()->moduleExists("php")) {
+        $bool_pagematch = php_eval(implode("", $clhc_pages));
+      }
+    }
+    else {
+      $bool_pagematch = TRUE;
+    }
+  }
+  return $bool_pagematch;
+}
+
+/**
+ * Determines if the chat should be shown for the defined content_type or not.
+ *
+ * @param \Drupal\node\Entity\Node $node
+ *   Node object.
+ * @param \Drupal\Core\Config\ImmutableConfig $config
+ *   Object of type configuration livehelperchatformsettings.
+ *
+ * @return bool
+ *   Returns true if the node does not contain the content_type,False otherwise.
+ */
+function chat_livehelperchat_check_visibility_content_type(Node $node = NULL, ImmutableConfig $config = NULL) {
+  if (empty($config)) {
+    $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+  }
+  if (empty($node)) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+  }
+  $clhc_content_type = $config->get('clhc_content_type');
+  $access_page = TRUE;
+  if ($node) {
+    $bundle = $node->bundle();
+    foreach ($clhc_content_type as $key => $value) {
+      if ($key === $value && $key === $bundle) {
+        $access_page = FALSE;
+        break;
+      }
+    }
+  }
+  return $access_page;
+}
+
+/**
+ * Determines if the chat should be shown for the defined roles or not.
+ *
+ * @param \Drupal\Core\Session\AccountProxyInterface $account
+ *   A full user object.
+ * @param \Drupal\Core\Config\ImmutableConfig $config
+ *   Object of type configuration livehelperchatformsettings.
+ *
+ * @return bool
+ *   Returns true if the user does not contain one of the roles,False otherwise.
+ */
+function chat_livehelperchat_check_visibility_roles(AccountProxyInterface $account, ImmutableConfig $config = NULL) {
+  $accessbyRole = TRUE;
+  if (empty($config)) {
+    $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+  }
+  $clhc_roles = $config->get('clhc_roles');
+  foreach ($account->getRoles() as $rid) {
+    if (isset($clhc_roles[$rid]) && $rid === $clhc_roles[$rid]) {
+      $accessbyRole = FALSE;
+      break;
+    }
+  }
+  return $accessbyRole;
+}
+
+/**
+ * Function to match path.
+ *
+ * @param string $path
+ *   The path to match.
+ * @param array $patterns
+ *   Array of patterns.
+ *
+ * @return bool
+ *   Return TRUE if path match to one patterns, else return FALSE.
+ */
+function chat_livehelperchat_match_pathes($path, array $patterns) {
+  $service_pathmatcher = \Drupal::service('path.matcher');
+  $matchPath = FALSE;
+  foreach ($patterns as $pattern) {
+    if ($service_pathmatcher->matchPath($path, $pattern)) {
+      $matchPath = TRUE;
+      break;
+    }
+  }
+  return $matchPath;
+}
+
+/**
+ * List of content type in site.
+ *
+ * @param bool $object
+ *   Bool parameter to return object content type or not.
+ *
+ * @return array
+ *   Return List of content type in site
+ */
+function chat_livehelperchat_list_content_type($object = TRUE) {
+  $contentTypes = \Drupal::service('entity_type.manager')->getStorage('node_type')->loadMultiple();
+  if ($object) {
+    return $contentTypes;
+  }
+  else {
+    $contentTypesList = [];
+    foreach ($contentTypes as $contentType) {
+      $contentTypesList[$contentType->id()] = $contentType->label();
+    }
+    return $contentTypesList;
+  }
+}
+
+/**
+ * Mapping language Drupal - Live Helper chat.
+ *
+ * @return mixed|string
+ *   Returns the language of the mapped site to the LHelperChat language codes.
+ */
+function chat_livehelperchat_current_language_mapping() {
+  $language = \Drupal::languageManager()->getCurrentLanguage();
+  $language_id = $language->getId();
+  $langmapping = [
+    'fi' => 'fin',
+    'en' => '',
+    'lt' => 'lit',
+    'hr' => 'hrv',
+    'es' => 'esp',
+    'da' => 'dnk',
+    'pt' => 'por',
+    'nl' => 'nld',
+    'ar' => 'ara',
+    'de' => 'ger',
+    'pl' => 'pol',
+    'ru' => 'rus',
+    'it' => 'ita',
+    'fr' => 'fre',
+    'zh' => 'chn',
+    'cs' => 'cse',
+    'no' => 'nor',
+    'tr' => 'tur',
+    'vi' => 'vnm',
+    'id' => 'idn',
+    'sv' => 'sve',
+    'fa' => 'per',
+    'el' => 'ell',
+    'ro' => 'rou',
+    'bg' => 'bgr',
+    'th' => 'tha',
+    'ka' => 'geo',
+    'sq' => 'alb',
+  ];
+  return !empty($langmapping[$language_id]) ? $langmapping[$language_id] : '';
+}
+
+/**
+ * Generate the script to embebed Chat in page.
+ *
+ * @param \Drupal\Core\Config\ImmutableConfig $config
+ *   Object of type configuration livehelperchatformsettings.
+ * @param string $lang_code
+ *   Code of Language mapping.
+ *
+ * @return string
+ *   Return the script chat.
+ */
+function chat_livehelperchat_generate_script_lhcchat(ImmutableConfig $config = NULL, $lang_code = "") {
+
+  $lang_str = ((!empty($lang_code)) ? $lang_code . '/' : '');
+
+  if (empty($config)) {
+    $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+  }
+
+  $url = $config->get('clhc_url');
+
+  $chat_http_mode = $config->get('clhc_chat_http_mode');
+  $lhcChatOptions = [];
+  if ($value = $config->get('clhc_widget_height')) {
+    $lhcChatOptions['widget_height'] = $value;
+  }
+  if ($value = $config->get('clhc_widget_width')) {
+    $lhcChatOptions['widget_width'] = $value;
+  }
+  if ($value = $config->get('clhc_popup_height')) {
+    $lhcChatOptions['popup_height'] = $value;
+  }
+  if ($value = $config->get('clhc_popup_width')) {
+    $lhcChatOptions['popup_width'] = $value;
+  }
+  if ($value = $config->get('clhc_domain')) {
+    $lhcChatOptions['domain'] = $value;
+  }
+  $lhcChatOptions = json_encode($lhcChatOptions);
+
+  $lhcChatOptionsURL = [];
+  if ($value = $config->get('clhc_click_internal')) {
+    $lhcChatOptionsURL[] = '(click)/internal';
+  }
+  if ($value = $config->get('clhc_position')) {
+    $lhcChatOptionsURL[] = '(position)/' . $value;
+  }
+  if ($config->get('clhc_minimize_action') == 'minimize') {
+    $lhcChatOptionsURL[] = '(ma)/br';
+  }
+  if ($value = $config->get('clhc_hide_offline')) {
+    $lhcChatOptionsURL[] = '(hide_offline)/true';
+  }
+  if ($value = $config->get('clhc_check_messages')) {
+    $lhcChatOptionsURL[] = '(check_operator_messages)/true';
+  }
+
+  if ($value = $config->get('clhc_position_fromtop')) {
+    $lhcChatOptionsURL[] = '(top)/' . $value;
+  }
+  if ($value = $config->get('clhc_position_unit')) {
+    $lhcChatOptionsURL[] = '(units)/' . $value;
+  }
+  if ($value = $config->get('clhc_offline_leavemessage')) {
+    $lhcChatOptionsURL[] = '(leaveamessage)/true';
+  }
+  if ($value = $config->get('clhc_department')) {
+    $lhcChatOptionsURL[] = '(department)/' . $value;
+  }
+  if ($value = $config->get('clhc_theme')) {
+    $lhcChatOptionsURL[] = '(theme)/' . $value;
+  }
+  if ($value = $config->get('clhc_identifier')) {
+    $lhcChatOptionsURL[] = '(identifier)/' . $value;
+  }
+  if ($value = $config->get('clhc_disable_proactive')) {
+    $lhcChatOptionsURL[] = '(disable_pro_active)/true';
+  }
+  if ($value = $config->get('clhc_nonresponsive_widget')) {
+    $lhcChatOptionsURL[] = '(noresponsive)/true';
+  }
+
+  $lhcChatOptionsStr = implode('/', $lhcChatOptionsURL);
+
+  $script_chat = <<<EOS
+var LHCChatOptions = {};
+LHCChatOptions.opt = ${lhcChatOptions};
+LHCChatOptions.attr_prefill = {};
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  var referrer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf('://')+1)) : '';
+  var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : '';
+  po.src = '${chat_http_mode}//${url}/index.php/{$lang_str}chat/getstatus/${lhcChatOptionsStr}?r='+referrer+'&l='+location;
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+EOS;
+
+  return $script_chat;
+
+}
+
+/**
+ * Generate the script to embebed FAQ in page.
+ *
+ * @param \Drupal\Core\Config\ImmutableConfig $config
+ *   Object of type configuration livehelperchatformsettings.
+ * @param string $lang_code
+ *   Code of Language mapping.
+ *
+ * @return string
+ *   Return the script FAQ.
+ */
+function chat_livehelperchat_generate_script_lhcfaq(ImmutableConfig $config = NULL, $lang_code = "") {
+  if (empty($config)) {
+    $config = \Drupal::config('chat_livehelperchat.livehelperchatformsettings');
+  }
+  $lang_str = (!empty($lang_code)) ? $lang_code . '/' : '';
+  $url = $config->get('clhc_url');
+  $script_faq = "";
+  if ($config->get('clhc_widget_faq_active')) {
+    $faq_http_mode = $config->get('clhc_faq_http_mode');
+    $lhcFaqOptions = [];
+    if ($value = $config->get('clhc_faq_text')) {
+      $lhcFaqOptions['status_text'] = $value;
+    }
+    else {
+      $lhcFaqOptions['status_text'] = t("FAQ");
+    }
+    $lhcFaqOptions['url'] = "replace_me_with_dynamic_url";
+    $lhcFaqOptions['identifier'] = "";
+
+    $lhcFaqOptions_str = json_encode($lhcFaqOptions);
+
+    $lhcFaqOptionsURL = [];
+    if ($value = $config->get('clhc_faq_position')) {
+      $lhcFaqOptionsURL[] = '(position)/' . $value;
+    }
+    if ($value = $config->get('clhc_faq_position_fromtop')) {
+      $lhcFaqOptionsURL[] = '(top)/' . $value;
+    }
+    else {
+      $lhcFaqOptionsURL[] = '(top)/300';
+    }
+    if ($value = $config->get('clhc_faq_position_unit')) {
+      $lhcFaqOptionsURL[] = '(units)/' . $value;
+    }
+    if ($value = $config->get('clhc_faq_theme')) {
+      $lhcFaqOptionsURL[] = '(theme)/' . $value;
+    }
+    if ($value = $config->get('clhc_faq_nonresponsive_widget')) {
+      $lhcFaqOptionsURL[] = '(noresponse)/true';
+    }
+    $lhcFaqOptionsURLStr = implode('/', $lhcFaqOptionsURL);
+
+    $script_faq = <<<EOS
+      var LHCFAQOptions = ${lhcFaqOptions_str};
+      (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = '${faq_http_mode}//${url}/index.php/{$lang_str}faq/getstatus/${lhcFaqOptionsURLStr}';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+EOS;
+  }
+  return $script_faq;
+}

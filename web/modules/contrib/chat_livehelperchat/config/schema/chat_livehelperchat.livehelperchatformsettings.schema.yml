@@ -1,0 +1,115 @@
+chat_livehelperchat.livehelperchatformsettings:
+  type: config_object
+  label: 'LHC settings'
+  mapping:
+    clhc_type_settings:
+      type: string
+      label: 'Specify the type of chat settings.'
+    clhc_url:
+      type: string
+      label: 'Live Helper Chat base URL'
+    clhc_widget_height:
+      type: float
+      label: 'Widget height'
+    clhc_widget_width:
+      type: float
+      label: 'Widget width'
+    clhc_popup_height:
+      type: float
+      label: 'Popup height'
+    clhc_popup_width:
+      type: float
+      label: 'Popup width'
+    clhc_position_fromtop:
+      type: float
+      label: 'Position from top'
+    clhc_position_unit:
+      type: string
+      label: 'Position from top unit'
+    clhc_click_internal:
+      type: boolean
+      label: 'On a mouse click show the page widget'
+    clhc_check_messages:
+      type: boolean
+      label: 'Check automatically for messages from the operator'
+    clhc_disable_proactive:
+      type: boolean
+      label: 'Disable pro active invitations'
+    clhc_hide_offline:
+      type: boolean
+      label: 'Hide when operator is offline'
+    clhc_offline_leavemessage:
+      type: boolean
+      label: 'Show a leave message form when operator is offline'
+    clhc_nonresponsive_widget:
+      type: boolean
+      label: 'Disable responsive layout of the status widget'
+    clhc_chat_http_mode:
+      type: string
+      label: 'Choose prefered http mode'
+    clhc_domain:
+      type: string
+      label: 'Domain'
+    clhc_department:
+      type: string
+      label: 'Department ID'
+    clhc_theme:
+      type: string
+      label: 'Theme'
+    clhc_identifier:
+      type: string
+      label: 'Chat identifier'
+    clhc_minimize_action:
+      type: string
+      label: 'Minimize action'
+    clhc_position:
+      type: string
+      label: 'Position'
+    clhc_roles:
+      type: sequence
+      label: 'Remove script for specific roles'
+      sequence:
+        type: string
+        label: 'Role'
+    clhc_content_type:
+      type: sequence
+      label: 'Remove script for specific content type'
+      sequence:
+        type: string
+        label: 'Content type'
+    clhc_visibility:
+      type: integer
+      label: 'Add script to specific pages'
+    clhc_pages:
+      type: sequence
+      label: 'Pages'
+      sequence:
+        type: string
+        label: 'Page'
+    clhc_script_codejs:
+      type: text
+      label: 'Code JS'
+    clhc_widget_faq_active:
+      type: boolean
+      label: 'Active Widget/Module FAQ'
+    clhc_faq_text:
+      type: string
+      label: 'Status text'
+    clhc_faq_theme:
+      type: string
+      label: 'Theme'
+    clhc_faq_position_fromtop:
+      type: float
+      label: 'Position from top'
+    clhc_faq_position_unit:
+      type: string
+      label: 'Position from top unit'
+    clhc_faq_position:
+      type: string
+      label: 'Position'
+    clhc_faq_http_mode:
+      type: string
+      label: 'Choose prefered http mode'
+    clhc_faq_nonresponsive_widget:
+      type: boolean
+      label: 'Disable responsive layout for status widget.'

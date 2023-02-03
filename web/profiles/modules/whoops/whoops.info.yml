@@ -1,0 +1,12 @@
+type: module
+name: Whoops
+description: 'Provides Drupal integration with the whoops library - PHP errors for cool kids.'
+package: Development
+core_version_requirement: ^8 || ^9
+tags:
+ - developer
+
+# Information added by Drupal.org packaging script on 2021-07-29
+version: '8.x-1.0-beta2'
+project: 'whoops'
+datestamp: 1627589051

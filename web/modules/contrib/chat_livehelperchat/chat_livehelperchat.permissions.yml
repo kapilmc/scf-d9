@@ -1,0 +1,12 @@
+administer chat_livehelperchat:
+  title: 'Administer livehelperchat module'
+  description: 'Permission to change livehelperchat settings'
+  restrict access: TRUE
+use php for livehelperchat visibility:
+  title: 'Use PHP for livehelperchat visibility'
+  description: 'Permission to set PHP conditions to customize livehelperchat visibility on various pages'
+  restrict access: TRUE
+use injectjs server config for chat_livehelperchat:
+  title: 'Allow JS configuration injection in the page header.'
+  description: 'Permission to allow JS configuration injection in the header of the page generated in the chat server.'
+  restrict access: TRUE

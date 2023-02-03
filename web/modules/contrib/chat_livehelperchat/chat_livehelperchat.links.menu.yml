@@ -1,0 +1,6 @@
+chat_livehelperchat.live_helper_chat_form_settings:
+  title: 'Settings Live Helper Chat'
+  route_name: chat_livehelperchat.live_helper_chat_form_settings
+  description: 'Configure the settings used to generate your Live helper chat code.'
+  parent: system.admin_config_system
+  weight: 99

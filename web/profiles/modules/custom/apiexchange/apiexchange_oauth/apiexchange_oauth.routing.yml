@@ -1,0 +1,8 @@
+apiexchange_oauth.apiexchange_oauth_form:
+  path: '/admin/config/apiexchange/oauth'
+  defaults:
+    _form: '\Drupal\apiexchange_oauth\Form\apiexchange_oauth_adminForm'
+    _title: 'API Oauth'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'

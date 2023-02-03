@@ -1,0 +1,35 @@
+
+clhc_type_settings: "0"
+clhc_url: "demo.livehelperchat.com"
+clhc_widget_height: 340
+clhc_widget_width: 300
+clhc_popup_height: 520
+clhc_popup_width: 500
+clhc_position_fromtop: 500
+clhc_position_unit: ""
+clhc_click_internal: false
+clhc_check_messages: false
+clhc_disable_proactive: false
+clhc_hide_offline: true
+clhc_offline_leavemessage: false
+clhc_nonresponsive_widget: false
+clhc_chat_http_mode: ""
+clhc_domain: ""
+clhc_department: ""
+clhc_theme: ""
+clhc_identifier: ""
+clhc_minimize_action: ""
+clhc_position: "bottom_right"
+clhc_roles: []
+clhc_content_type: []
+clhc_visibility: 0
+clhc_pages: ["/admin", "/admin/*","/user/*/*", "/node/add/*","/batch/*", "/node/*/*"]
+clhc_script_codejs: ""
+clhc_widget_faq_active: false
+clhc_faq_text: "FAQ"
+clhc_faq_theme: ""
+clhc_faq_position_fromtop: 450
+clhc_faq_position_unit: "pixels"
+clhc_faq_position: "bottom_right"
+clhc_faq_http_mode: ""
+clhc_faq_nonresponsive_widget: false

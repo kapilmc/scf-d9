@@ -1,0 +1,9 @@
+chat_livehelperchat.live_helper_chat_form_settings:
+  path: '/admin/config/chat_livehelperchat/livehelperchatformsettings'
+  defaults:
+    _form: '\Drupal\chat_livehelperchat\Form\LiveHelperChatFormSettings'
+    _title: 'Live Helper Chat Form Settings'
+  requirements:
+    _permission: 'administer chat_livehelperchat'
+  options:
+    _admin_route: TRUE

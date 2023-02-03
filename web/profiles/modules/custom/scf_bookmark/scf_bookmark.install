@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Contains variables and installation info.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function scf_bookmark_schema() {
+  $schema['scf_bookmark'] = array(
+    'description' => 'Bookmark',
+    'fields' => array(
+      'eid' => array(
+        'description' => 'The engagement_id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'uid' => array(
+        'description' => 'The user id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'nid' => array(
+        'description' => 'The node id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'description' => 'Content type',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'timestamp' => array(
+        'description' => 'The timestamp of bookmark',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'type'        => array('type'),
+      'timestamp'   => array('timestamp'),
+    ),
+    'primary key' => array('eid', 'uid', 'nid'),
+  );
+  return $schema;
+}
+
+/*
+ * Implements hook_uninstall().
+ */
+function scf_bookmark_uninstall() {
+  drupal_uninstall_schema('scf_bookmark');
+}

@@ -1,0 +1,35 @@
+apiexchnage.apiexchange_form:
+  path: '/admin/config/apiexchange/configuration'
+  defaults:
+    _form: '\Drupal\apiexchange\Form\ApiexchangeForm'
+    _title: 'API Common configuration'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'
+
+apiexchnage.apiexchangeentity_form:
+  path: '/admin/config/apiexchange/entity/add'
+  defaults:
+    _form: '\Drupal\apiexchange\Form\ApiexchangeEntityForm'
+    _title: 'Add New API'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'
+
+apiexchnage.apiexchangeentity_editform:
+  path: '/admin/config/apiexchange/entity/apiexchange/{id}'
+  defaults:
+   _form: '\Drupal\apiexchange\Form\ApiexchangeEntityForm'
+   _title: 'Edit API'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'
+
+apiexchnage.apiexchangeentity_list:
+  path: '/admin/config/apiexchange/list'
+  defaults:
+    _controller: '\Drupal\apiexchange\Controller\ApiexchangeController::mypage'
+    _title: 'API Exchange List / All data render'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'

@@ -1,0 +1,25 @@
+{
+  "name": "drupal/chat_livehelperchat",
+  "description": "Integration with LiveHelperChat.",
+  "type": "drupal-module",
+  "keywords": ["Drupal", "Chat",],
+  "homepage": "https://www.drupal.org/project/chat_livehelperchat",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Maikel Maldonado del Toro (mmaldonado)",
+      "email": "mmaldonado9102@gmail.com",
+      "homepage": "https://www.drupal.org/u/mmaldonado",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Zaidee Berges Pedrianes (zberges)",
+      "homepage": "https://www.drupal.org/u/zberges",
+      "role": "Maintainer"
+    }    
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/chat_livehelperchat",
+    "source": "http://cgit.drupalcode.org/chat_livehelperchat"
+  },
+}

@@ -1,0 +1,6 @@
+name: 'Mckinsey API exchange oauth2' 
+description: 'This module generates/updates access token to be used with apix.'
+core_version_requirement: ^9 
+type: module
+version: 0.1
+package: custom
