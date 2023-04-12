@@ -1,0 +1,113 @@
+scf_hit_page.hit_page_overview_form:
+  route_name : scf_hit_page.hit_page_overview_form
+  title: What is a Hit?
+  base_route: scf_hit_page.hit_page_overview_form
+  weight: 1
+
+
+ 
+scf_hit_page.hit_page_overview_form_child:
+  route_name : scf_hit_page.hit_page_overview_form
+  title: OverView
+  parent_id: scf_hit_page.hit_page_overview_form
+  weight: 1
+
+scf_hit_page.hit_page_insights_form_child:
+  route_name : scf_hit_page.hit_page_insights_form
+  title: Insights
+  parent_id: scf_hit_page.hit_page_overview_form
+  weight: 2
+
+
+scf_hit_page.hit_page_leadership_formm_child:
+  route_name : scf_hit_page.hit_page_leadership_form
+  title: Video
+  parent_id: scf_hit_page.hit_page_overview_form
+  weight: 3
+
+
+
+  
+
+
+
+scf_hit_page.hit_pageimpactform:
+  route_name : scf_hit_page.hit_pageimpactform
+  title: Success stories
+  base_route: scf_hit_page.hit_page_overview_form
+  weight: 2
+
+
+
+
+scf_hit_page.hit_pageimpactform_child:
+  route_name : scf_hit_page.hit_pageimpactform
+  title: Client Impact Stories
+  parent_id: scf_hit_page.hit_pageimpactform
+  weight: 1
+
+
+scf_hit_page.hit_page_quotes_form_child:
+  route_name : scf_hit_page.hit_page_quotes_form
+  title: CST Quotes
+  parent_id: scf_hit_page.hit_pageimpactform
+  weight: 2
+
+
+
+scf_hit_page.hit_page_request_a_hit_form:
+  route_name : scf_hit_page.hit_page_request_a_hit_form
+  title: Request HIT
+  base_route: scf_hit_page.hit_page_overview_form
+  weight: 3
+
+
+scf_hit_page.hit_page_request_a_hit_form_child:
+  route_name : scf_hit_page.hit_page_request_a_hit_form
+  title:  Request HIT
+  parent_id: scf_hit_page.hit_page_request_a_hit_form
+  weight: 1
+
+scf_hit_page.hit_page_journey_form_child:
+  route_name : scf_hit_page.hit_page_journey_form
+  title:  CST Journey Map
+  parent_id: scf_hit_page.hit_page_request_a_hit_form
+  weight: 2
+
+
+
+scf_hit_page.hit_page_core_team_form:
+  route_name : scf_hit_page.hit_page_core_team_form
+  title: Core Team
+  base_route: scf_hit_page.hit_page_overview_form
+  weight: 4
+
+
+scf_hit_page.hit_page_core_team_form_child:
+  route_name : scf_hit_page.hit_page_core_team_form
+  title:  Core Team
+  parent_id: scf_hit_page.hit_page_core_team_form
+  weight: 1
+
+scf_hit_page.hit_page_key_contact_form_child:
+  route_name : scf_hit_page.hit_page_key_contact_form
+  title:  Key Contact
+  parent_id: scf_hit_page.hit_page_core_team_form
+  weight: 2
+
+
+scf_hit_page.hit_page_sample_hits_form:
+  route_name : scf_hit_page.hit_page_sample_hits_form
+  title: Documents
+  base_route: scf_hit_page.hit_page_overview_form
+  weight: 5
+
+
+
+
+
+
+
+
+
+

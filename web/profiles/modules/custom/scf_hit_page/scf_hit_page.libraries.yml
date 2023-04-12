@@ -1,0 +1,10 @@
+scf_hit_page_lib:
+  version: 1.x
+  css:
+    theme:
+      scf_hit_page.css: {}
+  js:
+    js/scf_hit_page.js: {}
+    dependencies:
+        - core/jquery
+        - core/drupalSettings

@@ -1,0 +1,77 @@
+scf_hit_page.hit_page_manage_content:
+  title: Manage HIT Page
+  parent: system.admin
+  route_name: scf_hit_page.hit_page_overview_form
+  weight: 0
+
+scf_hit_page.hit_page_overview_form:
+  title: What is a HIT ?
+  parent: scf_hit_page.hit_page_manage_content
+  route_name: scf_hit_page.hit_page_overview_form
+  weight: 1
+
+scf_hit_page.hit_page_leadership_form:
+  title: Video
+  parent: scf_hit_page.hit_page_overview_form
+  route_name:  scf_hit_page.hit_page_leadership_form
+  weight: 1
+
+scf_hit_page.hit_page_insights_form:
+  title: Insights
+  parent: scf_hit_page.hit_page_overview_form
+  route_name: scf_hit_page.hit_page_insights_form
+  weight: 2
+
+
+scf_hit_page.hit_pageimpactform:
+  title: Impact Stories
+  parent: scf_hit_page.hit_page_manage_content
+  route_name: scf_hit_page.hit_pageimpactform
+  weight: 2
+
+
+scf_hit_page.hit_page_quotes_form:
+  title: CST Quotes
+  parent: scf_hit_page.hit_pageimpactform
+  route_name: scf_hit_page.hit_pageimpactform
+  weight: 1
+
+
+
+
+
+scf_hit_page.hit_page_request_a_hit_form:
+  title: Request a HIT
+  parent: scf_hit_page.hit_page_manage_content
+  route_name: scf_hit_page.hit_page_request_a_hit_form
+  weight: 3
+
+
+scf_hit_page.hit_page_journey_form:
+  title: CST Journey Map
+  parent: scf_hit_page.hit_page_request_a_hit_form
+  route_name: scf_hit_page.hit_page_journey_form
+  weight: 1
+
+
+scf_hit_page.hit_page_core_team_form:
+  title: Core Team
+  parent: scf_hit_page.hit_page_manage_content
+  route_name: scf_hit_page.hit_page_core_team_form
+  weight: 4
+
+
+
+scf_hit_page.hit_page_key_contact_form:
+  title: Key Contact
+  parent: scf_hit_page.hit_page_core_team_form
+  route_name: scf_hit_page.hit_page_key_contact_form
+  weight: 1
+
+scf_hit_page.hit_page_sample_hits_form:
+  title: Documents
+  parent: scf_hit_page.hit_page_manage_content
+  route_name:  scf_hit_page.hit_page_sample_hits_form
+  weight: 5
+
+

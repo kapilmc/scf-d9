@@ -1,0 +1,7 @@
+name: SCF HIT PAGE
+description: SCF HIT Page
+type: module
+package: SCF
+core_version_requirement: ^8 || ^9 || ^10
+version: 9.x-1.0
+configure: scf_hit_page.hit_page_overview_form

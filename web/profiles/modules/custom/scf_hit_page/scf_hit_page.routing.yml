@@ -1,0 +1,194 @@
+scf_hit_page.hitpagecontact:
+  path: '/admin/hit-page/contact'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_contact_form'
+    _title: 'Contact Details'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+scf_hit_page.hit_pageimpactform:
+  path: '/admin/hit-page/impact-videos'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_impact_form'
+    _title: 'Client Impact Stories'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+scf_hit_page.hit_page_insights_form:
+  path: '/admin/hit-page/overview/insights'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_insights_form'
+    _title: 'Hit Insights'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'    
+scf_hit_page.hit_page_leadership_form:
+  path: '/admin/hit-page/leadership-videos'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_leadership_form'
+    _title: 'Video'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'    
+scf_hit_page.hit_page_overview_form:
+  path: '/admin/hit-page/overview'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_overview_form'
+    _title: 'Overview'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+# scf_hit_page.hit_page_overview_form2:
+#   path: '/admin/hit-page/overview'
+#   defaults:
+#     _form: '\Drupal\scf_hit_page\Form\hit_page_overview_form2'
+#     _title: 'Overview'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE'            
+scf_hit_page.hit_page_process_form:
+  path: '/admin/hit-page/overview/hit-process'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_process_form'
+    _title: 'Overview HIT Process'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'    
+scf_hit_page.hit_page_quotes_form:
+  path: '/admin/hit-page/quotes'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_quotes_form'
+    _title: 'CST Quotes'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'    
+scf_hit_page.hit_page_sample_hits_form:
+  path: '/admin/hit-page/sample-hits'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_sample_hits_form'
+    _title: 'Documents'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+scf_hit_page.hit_page_statistics_form:
+  path: '/admin/hit-page/statistics'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_statistics_form'
+    _title: 'Relevant Statistics'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+scf_hit_page.hit_page_request_a_hit_form:
+  path: '/admin/hit-page/request-a-hit'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_request_a_hit_form'
+    _title: 'Request a HIT'
+  requirements:
+    _permission: 'administer manage ordering'
+    _access: 'TRUE' 
+
+scf_hit_page.hit_page_journey_form:
+  path: '/admin/hit-page/request-a-hit/cst-journey-map'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_journey_form'
+    _title: 'CST Journey Map'
+  requirements:
+    _permission: 'administer manage ordering'
+    _access: 'TRUE' 
+
+
+scf_hit_page.hit_page_core_team_form:
+  path: '/admin/hit-page/core-team'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_core_team_form'
+    _title: 'Core Team'
+  requirements:
+    _permission: 'administer manage ordering'
+    _access: 'TRUE' 
+
+
+
+
+
+scf_hit_page.hit_autocomplete:
+  path: '/admin/hit/hit_autocomplete'
+  defaults:
+    _controller: '\Drupal\scf_hit_page\Controller\HitPageController::autocomplete_item_core_team_hit'
+    _title: 'Hit Core Team Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+
+scf_hit_page.hit_core_team_remove_form:
+  path: '/admin/hit-page/core-team/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scf_hit_page\Controller\HitPageController::remove_item_hit_core_team'
+    _title: 'Remove Core Team Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+scf_hit_page.hit_page_key_contact_form:
+  path: '/admin/hit-page/core-team/key-contact'
+  defaults:
+    _form: '\Drupal\scf_hit_page\Form\hit_page_key_contact_form'
+    _title: 'Key Contact'
+  requirements:
+    _permission: 'administer manage ordering'
+    _access: 'TRUE' 
+
+scf_hit_page.key_autocomplete:
+  path: 'admin/hit-page/core-team/key-contact/autocomplete'
+  defaults:
+    _controller: '\Drupal\scf_hit_page\Controller\HitPageController::autocomplete_item_key_conatct_hit'
+    _title: ' Key Contact Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+
+scf_hit_page.hit_page_key_team_remove_form:
+  path: '/admin/hit-page/key-contact/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scf_hit_page\Controller\HitPageController::remove_item_hit_page_key_contact'
+    _title: 'Remove Key Contact Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+
+
+
+
+# scf_hit_page.testinfform:
+#   path: '/testing_form'
+#   defaults:
+#      _controller: '\Drupal\scf_hit_page\Controller\HitPageController::mypage'
+#      _title: 'Testing DATA'
+#   requirements:
+#     _access: 'TRUE'
+
+scf_hit_page.remove-quotes:
+  path: '/admin/hit-page/quotes/remove-quotes/{id}'
+  defaults:
+     _controller: '\Drupal\scf_hit_page\Controller\HitPageController::remove_hit_page_quotes_form'
+     _title: 'Hot topics'
+  requirements:
+    _access: 'TRUE'
+
+
+scf_hit_page.remove-samples:
+  path: '/admin/hit-page/sample-hits/remove-sample/{id}'
+  defaults:
+     _controller: '\Drupal\scf_hit_page\Controller\HitPageController::remove_hit_page_sample_hits_form'
+     _title: 'sample page'
+  requirements:
+    _access: 'TRUE'
+
+

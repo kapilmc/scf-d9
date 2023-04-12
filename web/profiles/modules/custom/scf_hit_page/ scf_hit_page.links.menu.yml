@@ -1,0 +1,9 @@
+scf_hit_page.hit_page_manage_mcci_content:
+  title: Manage HIT Page
+  parent: system.admin
+  route_name: scf_hit_page.hit_page_overview_form
+  weight: 0
+
+
+
+ 

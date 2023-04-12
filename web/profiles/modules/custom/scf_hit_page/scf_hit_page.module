@@ -1,0 +1,142 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ */
+
+
+function scf_hit_page_form_node_form_alter(&$form, $form_state, $form_id) {
+
+    $getQuery = \Drupal::request()->query->get('destination');
+    
+    if ($form_id === 'node_hit_video_form' || $form_id === 'node_hit_video_edit_form' && !empty($getQuery)) {
+        if ($getQuery === 'admin/hit-page/leadership-videos') {
+            $form['actions']['submit']['#submit'][3] = 'callback_set_redirect_leadership_videos';
+        }elseif ($getQuery === 'admin/hit-page/impact-videos') {
+            $form['actions']['submit']['#submit'][3] = 'callback_set_redirect_impact_videos';
+        }
+        
+    
+    }
+  
+}
+function callback_set_redirect_leadership_videos($form, FormStateInterface $form_state) {
+    $query = \Drupal::database()->select('scf_hit_page_leadership_ordering', 'r');
+    $query->addField('r', 'weight', 'weight');
+    $result = $query->execute()->fetchAll();
+
+    $total_weight = [];
+    foreach ($result as $k => $val) {
+       
+        $total_weight[]=$val->weight;
+    }
+   
+    if (count($total_weight) != 0) {
+       $max_weight = max($total_weight);
+       $weight = $max_weight +1;
+    }else{
+        $weight = 1;
+    }
+
+    if (!empty($form_state->getValues(['nid']))) {
+       $nid = !empty($form_state->getValue(['nid'])) ? $form_state->getValue(['nid']) : 1;
+    }
+    if (!empty($form_state->getValue(['status'])['value'])) {
+        $status = !empty($form_state->getValue(['status'])['value']) ? $form_state->getValue(['status'])['value'] : 0;
+    }
+
+    // $query = \Drupal::database()->insert('scf_hit_page_leadership_ordering');
+    // $query->fields([
+    //   'nid',
+    //   'weight',
+    //   'status'
+    // ]);
+    // $query->values([
+    //   $nid,
+    //   $weight,
+    //   $status
+    // ]);
+    // $query->execute();
+    \Drupal::database()->merge('scf_hit_page_leadership_ordering')
+          ->insertFields(array(
+            'nid' => $nid,
+            'weight' => $weight,
+            'status' => $status
+          ))
+          ->updateFields(array(
+            'nid' => $nid,
+            'weight' => $weight,
+            'status' => $status
+          ))
+          ->key(array('nid' => $nid))
+          ->execute();
+   
+     
+  $form_state->setRedirect('scf_hit_page.hit_page_leadership_form');
+}
+
+function callback_set_redirect_impact_videos($form, FormStateInterface $form_state) {
+    $query = \Drupal::database()->select('scf_hit_page_impact_ordering', 'r');
+    $query->addField('r', 'weight', 'weight');
+    $result = $query->execute()->fetchAll();
+
+    $total_weight = [];
+    foreach ($result as $k => $val) {
+       
+        $total_weight[]=$val->weight;
+    }
+   
+    if (count($total_weight) != 0) {
+       $max_weight = max($total_weight);
+       $weight = $max_weight +1;
+    }else{
+        $weight = 1;
+    }
+
+    if (!empty($form_state->getValues(['nid']))) {
+       $nid = !empty($form_state->getValue(['nid'])) ? $form_state->getValue(['nid']) : 1;
+    }
+    if (!empty($form_state->getValue(['status'])['value'])) {
+        $status = !empty($form_state->getValue(['status'])['value']) ? $form_state->getValue(['status'])['value'] : 0;
+    }
+     
+    // dd($status);
+    // $query = \Drupal::database()->insert('scf_hit_page_leadership_ordering');
+    // $query->fields([
+    //   'nid',
+    //   'weight',
+    //   'status'
+    // ]);
+    // $query->values([
+    //   $nid,
+    //   $weight,
+    //   $status
+    // ]);
+    // $query->execute();
+    \Drupal::database()->merge('scf_hit_page_impact_ordering')
+          ->insertFields(array(
+            'nid' => $nid,
+            'weight' => $weight,
+            'status' => $status
+          ))
+          ->updateFields(array(
+            'nid' => $nid,
+            'weight' => $weight,
+            'status' => $status
+          ))
+          ->key(array('nid' => $nid))
+          ->execute();
+   
+     
+  $form_state->setRedirect('scf_hit_page.hit_pageimpactform');
+}
+
+function scf_hit_page_page_attachments(array &$attachments) {
+    // Unconditionally attach the mymodule/lrv library.
+    $attachments['#attached']['library'][] = 'scf_hit_page/scf_hit_page_lib';
+  }
