@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Contains uninstall functions for openid connect auto login.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function openid_connect_auto_login_uninstall() {
+  variable_del('openid_connect_auto_login_excluded_paths');
+  variable_del('openid_connect_auto_login_user_roles');
+}

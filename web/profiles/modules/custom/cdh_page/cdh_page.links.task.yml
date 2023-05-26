@@ -1,0 +1,74 @@
+
+cdh_page.cdh_page_overview_form:
+  route_name: cdh_page.cdh_page_overview_form  
+  title: 'What is  a CDH?'
+  base_route: cdh_page.cdh_page_overview_form
+  weight: 1
+
+cdh_page.cdh_page_overview_form_child:
+  route_name: cdh_page.cdh_page_overview_form  
+  title: 'OverView'
+  parent_id: cdh_page.cdh_page_overview_form
+  weight: 0
+
+cdh_page.cdh_page_proposition_form_child:
+  route_name: cdh_page.cdh_page_proposition_form 
+  title: 'Proposition Overview'
+  parent_id: cdh_page.cdh_page_overview_form
+  # base_route: cdh_page.cdh_page_overview_form
+  weight: 1
+
+cdh_page.cdh_page_Offering_form:
+  route_name: cdh_page.cdh_page_Offering_form 
+  title: 'Offering Overview'
+  base_route: cdh_page.cdh_page_overview_form 
+  weight: 2
+
+cdh_page.cdh_page_involved_form:
+  route_name: cdh_page.cdh_page_involved_form 
+  title: 'How To Get Involved'
+  base_route: cdh_page.cdh_page_overview_form 
+  weight: 3  
+
+cdh_page.cdh_page_involved_form_child:
+  route_name: cdh_page.cdh_page_involved_form  
+  title: 'How To Get Involved'
+  parent_id: cdh_page.cdh_page_involved_form
+  weight: 0
+
+cdh_page.cdh_page_reach_out_form_child:
+  route_name: cdh_page.cdh_page_reach_out_form  
+  title: 'Reach Out'
+  parent_id: cdh_page.cdh_page_involved_form
+  weight: 1
+
+
+cdh_page.cdh_page_impact_form:
+  route_name: cdh_page.cdh_page_impact_form 
+  title: 'Impact'
+  base_route: cdh_page.cdh_page_overview_form 
+  weight: 4
+
+cdh_page.cdh_page_cdh_team_form:
+  route_name: cdh_page.cdh_page_cdh_team_form
+  title: 'Core Team'
+  base_route: cdh_page.cdh_page_overview_form 
+  weight: 5   
+
+cdh_page.cdh_page_cdh_team_form_child:
+  route_name: cdh_page.cdh_page_cdh_team_form 
+  title: 'Core Team'
+  parent_id: cdh_page.cdh_page_cdh_team_form
+  weight: 0
+
+cdh_page.cdh_page_cdh_analyst_support_form_child:
+  route_name: cdh_page.cdh_page_cdh_analyst_support_form 
+  title: 'Dedicated S&CF CDH Analyst Support'
+  parent_id: cdh_page.cdh_page_cdh_team_form
+  weight: 1  
+
+cdh_page.cdh_page_first_alert_form_child:
+  route_name: cdh_page.cdh_page_first_alert_form 
+  title: 'First Alert'
+  parent_id: cdh_page.cdh_page_cdh_team_form
+  weight: 2  

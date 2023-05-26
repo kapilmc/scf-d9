@@ -1,0 +1,168 @@
+cdh_page.cdh_page_overview_form:
+  path: '/admin/cdh-page/overview'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_overview_form'
+    _title: 'What is a CDH?'
+  requirements:    
+    _permission : 'administer manage ordering'
+    _access: 'TRUE' 
+
+cdh_page.cdh_page_proposition_form:
+  path: 'admin/cdh-page/overview/proposition'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_proposition_form'
+    _title: 'proposition overview'
+  requirements:    
+    _permission : 'administer manage ordering'
+    _access: 'TRUE' 
+
+
+cdh_page.cdh_page_Offering_form:
+  path: '/admin/cdh-page/offering'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_Offering_form'
+    _title: 'Offering Overview'
+  requirements:    
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+cdh_page.cdh_page_impact_form:
+  path: '/admin/cdh-page/impact'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_impact_form'
+    _title: 'Impact'
+  requirements:
+    _permission : 'administer manage ordering'
+    _access: 'TRUE' 
+
+cdh_page.cdh_page_reach_out_form:
+  path: '/admin/cdh-page/proposition/reachout'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_reach_out_form'
+    _title: 'Reach Out'
+  requirements:    
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+
+cdh_page.cdh_page_involved_form:
+  path: '/admin/cdh-page/involved-videos'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_involved_form'
+    _title: 'How To Get Involved'
+  requirements:
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+
+cdh_page.cdh_page_cdh_team_form:
+  path: '/admin/cdh-page/cdh-team'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_cdh_team_form'
+    _title: 'Core Team'
+  requirements:
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+
+
+
+cdh_page.cdh_autocomplete:
+  path: '/admin/cdh-page/cdh-team_autocomplete'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::autocomplete_item_cdh_team_cdh'
+    _title: 'CDH Core Team Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+cdh_page.cdh_first_alert_autocomplete:
+  path: '/admin/cdh-page/cdh-team/first_alert_autocomplete'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::autocomplete_item_cdh_first_alert'
+    _title: 'Cdh First alert Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+cdh_page.cdh_analyst_autocomplete:
+  path: '/admin/cdh-page/cdh-team/analyst_autocomplete'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::autocomplete_item_cdh_analyst'
+    _title: 'CDH Analyst Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+
+cdh_page.cdh_core_team_remove_form:
+  path: '/admin/cdh-page/cdh-team/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::remove_item_cdh_cdh_team'
+    _title: 'Remove CDH Team Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+cdh_page.cdh_analyst_remove_item:
+  path: '/admin/cdh-page/cdh-analyst/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::remove_item_cdh_analyst'
+    _title: 'Remove CDH Analyst Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+cdh_page.cdh_first_alert_remove_item:
+  path: '/admin/cdh-page/cdh-team/first-alert/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\cdh_page\Controller\cdh_pageController::remove_item_cdh_first_alert'
+    _title: 'Remove CDH First Alert'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+cdh_page.cdh_page_first_alert_form:
+  path: '/admin/cdh-page/cdh-team/first-alert'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\Cdh_page_first_alert_form'
+    _title: 'First Alert'
+  requirements:
+    _permission : 'access content'
+    _access: 'TRUE'
+
+cdh_page.cdh_alert_form:
+  path: '/admin/cdh-page/cdh-team/first-alerts'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_alert_form'
+    _title: 'First Alert demo'
+  requirements:
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+
+
+cdh_page.cdh_page_cdh_analyst_support_form:
+  path: '/admin/cdh-page/cdh-team/cdh-analyst-support'
+  defaults:
+    _form: '\Drupal\cdh_page\Form\cdh_page_cdh_analyst_support_form'
+    _title: 'Dedicated S&CF CDH analyst support'
+  requirements:
+    _permission : 'administer manage ordering'
+    _access: 'TRUE'
+
+
+
+
+# cdh_page.first_alert_form:
+#   path: 'admin/cdh-page/cdh-team/first-alert/experts/autocomplete'
+#   defaults:
+#     _form: '\Drupal\cdh_page\Form\CdhPageFirstAlertForm'
+#     _title: 'First alert Experts'
+#   requirements:
+#     _permission : 'access content'
+#     _access: 'TRUE'
+
+# cdh_page.dedicated_analyst_support_form:
+#   path: 'admin/cdh-page/cdh-team/cdh-analyst-support'
+#   defaults:
+#     _form: '\Drupal\cdh_page\Form\CdhPageCdhAnalystSupportForm'
+#     _title: 'Dedicated S&CF CDH analyst support'
+#   requirements:
+#     _permission : 'access content'
+#     _access: 'TRUE'  

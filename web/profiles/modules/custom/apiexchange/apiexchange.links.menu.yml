@@ -1,0 +1,38 @@
+apiexchnage.system_admintesting:
+  title: Api Exchange
+  parent: system.admin_config
+  route_name: apiexchnage.system_admintesting
+
+
+
+apiexchnage.system_admintesting_child:
+  title: API Oauth
+  parent: apiexchnage.system_admintesting
+  description: 'API Oauth comman configuration.'
+  route_name: apiexchange_oauth.apiexchange_oauth_form
+  weight: 100
+
+apiexchnage.system_apiexchangeentity_form_child:
+  title: Add New API
+  parent: apiexchnage.system_admintesting
+  description: 'Add new api for apiexchange.'
+  route_name: apiexchnage.apiexchangeentity_form
+  weight: 102
+
+
+apiexchnage.apiexchange_settings_form_child:
+  title: API Common configuration
+  parent: apiexchnage.system_admintesting
+  description: 'API Common configuration.'
+  route_name: apiexchnage.apiexchange_settings_form
+  weight: 103
+
+
+apiexchnage.apiexchangeentity_list_form_child:
+  title: API Exchange List
+  parent: apiexchnage.system_admintesting
+  description: 'Configure DrupalChat module.'
+  route_name: apiexchnage.apiexchangeentity_list
+  weight: 104
+
+

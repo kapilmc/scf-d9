@@ -1,0 +1,89 @@
+scfp_landing_page.HomeNewsOrderingForm:
+  path: '/admin/managing/home-page/news'
+  defaults:
+    _form: '\Drupal\scfp_landing_page\Form\HomeNewsOrderingForm'
+    _title: 'Manage ordering of home page news'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scfp_landing_page.HomeNewsOrdering_remove_form:
+  path: '/admin/managing/home-page-news-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scfp_landing_page\Controller\ScfpController::remove_item_from_home_page_news'
+    _title: 'Remove home news'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+scfp_landing_page.HomeTopResourcesOrderingForm:
+  path: '/admin/managing/home-page/top-resources'
+  defaults:
+    _form: '\Drupal\scfp_landing_page\Form\HomeTopResourcesOrderingForm'
+    _title: 'Manage ordering of home page top resources'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+# scfp_landing_page.HomeTopResourcesOrdering_remove_form:
+#   path: '/admin/managing/home-page-top-resources-remove/{id}'
+#   defaults:
+#     _controller: '\Drupal\scfp_landing_page\Controller\ScfpController::remove_item_top_resources'
+#     _title: 'Remove home top resource'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE'
+
+
+
+scfp_landing_page.HomeTopTopicsOrderingForm:
+  path: '/admin/managing/home-page/hot-topics'
+  defaults:
+    _form: '\Drupal\scfp_landing_page\Form\HomeTopTopicsOrderingForm'
+    _title: 'Manage ordering of home page hot topics'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+scfp_landing_page.HomeTopTopicsOrderin_remove_form:
+  path: '/admin/managing/home-page-hot-topics-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scfp_landing_page\Controller\ScfpController::remove_item_from_home_page_hot_topics'
+    _title: 'Remove home top topics'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+scfp_landing_page.scfpdisplay_data:
+  path: '/scfpdata/autosearch_term'
+  defaults:
+    _controller: 'Drupal\scfp_landing_page\Controller\ScfpController::autocomplete_item_from_home_page_hot_topics'
+    _title: 'Manage ordering of home page news'
+  requirements:
+    _permission: 'access content'
+
+scfp_landing_page.home-page-top-resources-remove:
+  path: '/admin/managing/home-page-top-resources-remove/{id}'
+  defaults:
+    _controller: 'Drupal\scfp_landing_page\Controller\ScfpController::remove_item_from_home_page_top_resources'
+    _title: 'Top Resources remove'
+  requirements:
+    _permission: 'access content'
+
+
+
+# scfp_landing_page.HomePageNews:
+# path: '/admin/managing/home-page'
+#   defaults:
+#     _form: '\Drupal\scfp_landing_page\Form\HomeTopTopicsOrderingForm'
+#     _title: 'Manage Hot Topics/Top Resources/News'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE'

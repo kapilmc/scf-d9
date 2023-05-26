@@ -1,0 +1,9 @@
+name: Manage ordering
+type: module
+description: This module allows to manage content ordering of all user journey.
+package: custom
+core_version_requirement: ^8 || ^9 
+version: 9.x-1.0
+
+
+

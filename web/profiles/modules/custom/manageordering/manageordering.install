@@ -1,0 +1,99 @@
+<?php
+/**
+* Implements hook_schema().
+*/
+function manageordering_schema() {
+    $schema['resource_content_order'] = array(
+     'description' => 'custom table for resource content order',
+     'fields' => array(
+         'nid' => array(
+           'description' => 'Resource node id',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'user_journey' => array(
+           'description' => 'user journey tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'topic' => array(
+           'description' => 'Topics/Sub-topics tid.',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'seven_step' => array(
+           'description' => '7 step tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'resource_cat' => array(
+           'description' => 'Resource category tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'inspire' => array(
+           'description' => 'Inspire questions tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'win' => array(
+           'description' => 'Win category tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'navigate' => array(
+           'description' => 'Navigate our practice category tid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'weight' => array(
+           'type' => 'int',
+           'unsigned' => FALSE,
+           'not null' => TRUE,
+           'default' => 50,
+           'description' => 'The ordering of content.',
+         ),
+         'timestamp' => array(
+           'description' => 'Timestamp of of last updated',
+           'type' => 'int',
+           'unsigned' => TRUE,
+         ),
+
+     ),
+     'indexes' => array(
+       'nid' => array('nid'),
+       'user_journey' => array('user_journey'),
+       'topic' => array('topic'),
+       'seven_step' => array('seven_step'),
+       'resource_cat' => array('resource_cat'),
+       'inspire' => array('inspire'),
+       'win' => array('win'),
+       'navigate' => array('navigate'),
+     ),
+     'primary key' => array('nid', 'user_journey', 'topic', 'seven_step', 'resource_cat', 'inspire', 'win', 'navigate'),
+    );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function manageordering_uninstall() {
+    drupal_uninstall_schema('resource_content_order');
+}

@@ -1,0 +1,10 @@
+scf_leading_edge.scf_leading_edge_form:
+  title: Leading Edge & SFTP config
+  parent: system.admin_config
+  route_name: scf_leading_edge.scf_leading_edge_form
+
+scf_leading_edge.scf_mck_quaterly_form:
+  title: McKinsey Quarterly articles import config
+  parent: system.admin_config
+  route_name: scf_leading_edge.scf_mck_quaterly_form
+    

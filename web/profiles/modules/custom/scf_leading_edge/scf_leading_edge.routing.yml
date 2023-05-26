@@ -1,0 +1,26 @@
+scf_leading_edge.scf_leading_edge_form:
+  path: '/admin/config/leading-edge'
+  defaults:
+    _form: '\Drupal\scf_leading_edge\Form\scf_leading_edge_form'
+    _title: 'Leading Edge & SFTP config'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+scf_leading_edge.scf_mck_quaterly_form:
+  path: '/admin/config/mck-quaterly-config'
+  defaults:
+    _form: '\Drupal\scf_leading_edge\Form\scf_mck_quaterly_form'
+    _title: 'McKinsey Quarterly articles import config'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+
+
+
+

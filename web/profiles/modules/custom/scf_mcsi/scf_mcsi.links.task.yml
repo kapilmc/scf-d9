@@ -1,0 +1,67 @@
+scf_mcsi.mcsi_overview_form:
+  route_name : scf_mcsi.mcsi_overview_form
+  title: OverView
+  base_route: scf_mcsi.mcsi_overview_form
+  weight: 1
+ 
+
+scf_mcsi.mcsi_projects_form:
+  route_name : scf_mcsi.mcsi_projects_form
+  title: Project
+  base_route: scf_mcsi.mcsi_overview_form
+  weight: 2
+
+scf_mcsi.mcsi_get_involved_form:
+  route_name : scf_mcsi.mcsi_get_involved_form
+  title: How to get involved
+  base_route: scf_mcsi.mcsi_overview_form
+  weight: 3
+
+scf_mcsi.mcsi_get_involved_form_child_tab:
+  route_name : scf_mcsi.mcsi_get_involved_form
+  title: How to get involved
+  parent_id: scf_mcsi.mcsi_get_involved_form
+  weight: 1
+
+scf_mcsi.mcsi_faq_form_child_tab:
+  route_name : scf_mcsi.mcsi_faq_form
+  title:  faq
+  parent_id: scf_mcsi.mcsi_get_involved_form
+  weight: 2
+
+
+
+scf_mcsi.mcsi_core_team_form:
+  route_name : scf_mcsi.mcsi_core_team_form
+  title: Core Team
+  base_route: scf_mcsi.mcsi_overview_form
+  weight: 4
+
+scf_mcsi.mcsi_core_team_form_child_tab:
+  route_name : scf_mcsi.mcsi_core_team_form
+  title: Core Team
+  parent_id: scf_mcsi.mcsi_core_team_form
+  weight: 1
+
+scf_mcsi.mcsi_first_alert_form_child_tab:
+  route_name : scf_mcsi.mcsi_first_alert_form
+  title:  First Alert
+  parent_id: scf_mcsi.mcsi_core_team_form
+  weight: 2
+
+scf_mcsi.mcsi_overview_form_child:
+  route_name : scf_mcsi.mcsi_overview_form
+  title: OverView
+  parent_id: scf_mcsi.mcsi_overview_form
+  weight: 1
+
+scf_mcsi.mcsi_principles_form_child:
+  route_name : scf_mcsi.mcsi_principles_form
+  title: Principles
+  parent_id: scf_mcsi.mcsi_overview_form
+  weight: 2
+
+
+
+
+  

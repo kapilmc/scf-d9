@@ -1,0 +1,10 @@
+name: SCF Updates
+type: module
+description: SCF Updates suppose to handle deployment and configuration on different environment on cloud
+package: SCF
+core_version_requirement: ^8 || ^9 
+version: 9.x-1.0
+
+
+
+

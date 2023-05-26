@@ -1,0 +1,21 @@
+
+{# <h4>{{ title }}</h4>
+<ul>
+{% for article in items %}
+  <li>{{ article.title }}</li>
+{% endfor %} #}
+
+
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+<div class="row">
+  <div class="col-md-6">
+    {{ form.name }}
+  </div>
+  <div class="col-md-6">
+    {{ form.address }}
+  </div>
+</div>
+[...]

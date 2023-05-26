@@ -1,0 +1,108 @@
+
+scf_mcsi.mcsi:
+  path: '/admin/mcsi'
+  defaults:
+    _title: 'Manage MSCI Content'
+  requirements:
+    _permission: 'administer manage ordering'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_core_team_form:
+  path: '/admin/mcsi/core-team'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_core_team_form'
+    _title: 'MCSI Core Team'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_faq_form:
+  path: '/admin/mcsi/how-to-get-involved/faq'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_faq_form'
+    _title: 'MCSI FAQ'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_first_alert_form:
+  path: '/admin/mcsi/core-team/first-alert'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_first_alert_form'
+    _title: 'MCSI First Alert'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_first_alert_remove_form:
+  path: '/admin/mcsi/core-team/first-alert/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scf_mcsi\Controller\scf_mcsiController::remove_item_mcsi_first_alert'
+    _title: 'Remove Core Team Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_core_team_remove_form:
+  path: '/admin/mcsi/core-team/experts-remove/{id}'
+  defaults:
+    _controller: '\Drupal\scf_mcsi\Controller\scf_mcsiController::remove_item_mcsi_core_team'
+    _title: 'Remove Core Team Experts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'  
+
+
+scf_mcsi.mcsi_get_involved_form:
+  path: '/admin/mcsi/how-to-get-involved'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_get_involved_form'
+    _title: 'How to get involved'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+scf_mcsi.mcsi_overview_form:
+  path: '/admin/mcsi/overview'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_overview_form'
+    _title: 'MCSI Overview'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_principles_form:
+  path: '/admin/mcsi/overview/principles'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_principles_form'
+    _title: 'MCSI Principles'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_mcsi.mcsi_projects_form:
+  path: '/admin/mcsi/projects'
+  defaults:
+    _form: '\Drupal\scf_mcsi\Form\mcsi_projects_form'
+    _title: 'MCSI Projects'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+scf_mcsi.mcsi_autocomplete:
+  path: '/admin/mcsi/mcsi_autocomplete'
+  defaults:
+    _controller: '\Drupal\scf_mcsi\Controller\scf_mcsiController::mcsi_autocomplete'
+    _title: 'MCSI Core Team Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+scf_mcsi.first_alert_autocomplete:
+  path: '/admin/mcsi/first-alert-autocomplete'
+  defaults:
+    _controller: '\Drupal\scf_mcsi\Controller\scf_mcsiController::first_alter_autocomplete'
+    _title: 'First Alter Autocomplete'   
+  requirements:
+    _permission: 'access content'

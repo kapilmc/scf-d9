@@ -1,0 +1,6 @@
+name: Email template
+type: module
+description: Manage email templates for sending emails from the current site.
+package: custom
+core_version_requirement: ^8 || ^9 || ^10
+version: 9.x-1.0

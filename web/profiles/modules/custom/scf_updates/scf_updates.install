@@ -1,0 +1,2396 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall updates functions for the SPCV site.
+ */
+
+ /**
+  * Implements hook_schema().
+  */
+ function scf_updates_schema() {
+  $schema = [];
+//   if (!db_table_exists('scf_hot_topics_ordering')) {
+    $schema['scf_hot_topics_ordering'] = array(
+      'description' => 'Engagement documents ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+
+      'created' => array(
+     'type' => 'int',
+    'not null' => TRUE,
+     'default' => 0,
+    'description' => 'The Unix timestamp when the data was updated.',
+     ),
+      ),
+
+
+
+
+      'primary key' => array('nid'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_issue_tree')) {
+    $schema['scf_issue_tree'] = array(
+      'description' => 'Issue tree content.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for a issue tree.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => FALSE,
+          'default' => 0,
+        ),
+        'eid' => array(
+          'description' => 'The engagement id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => FALSE,
+          'default' => 0,
+        ),
+        'seven_step_ref' => array(
+          'description' => 'The seven_step_ref id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => FALSE,
+          'default' => 0,
+        ),
+        'data' => array(
+          'description' => 'The issue tree content.',
+          'type' => 'text',
+          'not null' => TRUE,
+          'size' => 'big',
+        ),
+        'timestamp' => array(
+          'description' => 'The Unix timestamp when the data was updated.',
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('issuetree' => array('eid', 'seven_step_ref')),
+    );
+//   }
+//   if (!db_table_exists('scf_top_tools_ordering')) {
+    $schema['scf_top_tools_ordering'] = array(
+      'description' => 'Top tools ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_webcasts_ordering')) {
+    $schema['scf_webcasts_ordering'] = array(
+      'description' => 'Webcasts ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+        'webcast_tid' => array(
+          'description' => 'webcast/podcast tid',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_experts_mapping')) {
+    $schema['scf_experts_mapping'] = array(
+      'description' => 'scf experts mapping.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'mapping' => array(
+          'description' => 'The mapping.',
+          'type' => 'text',
+          'not null' => FALSE,
+          'size' => 'big',
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_meet_our_people_links')) {
+    $schema['scf_meet_our_people_links'] = array(
+      'description' => 'Meet our people links ordering content.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for a Meet our people links.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The resource node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => FALSE,
+          'default' => 0,
+        ),
+        'title' => array(
+          'description' => 'The title of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('meet_our_people_links' => array('nid')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_onboarding_stats')) {
+    $schema['scf_onboarding_stats'] = array(
+      'description' => 'Onboarding popup display status.',
+      'fields' => array(
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'timestamp' => array(
+          'description' => 'The Unix timestamp when the data was updated.',
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+      'primary key' => array('uid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_current_journey')) {
+    $schema['scf_current_journey'] = array(
+      'description' => 'Current user journey.',
+      'fields' => array(
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+
+        'journey' => array(
+          'description' => 'journey.',
+          'type' => 'varchar',
+          'length' => 20,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+      ),
+
+      'primary key' => array('uid'),
+      'foreign keys' => array(
+        'user_journey' => array(
+          'table' => 'node',
+          'columns' => array('uid' => 'uid'),
+        ),
+      ),
+    );
+//   }
+
+//   if (!db_table_exists('scf_expert_ordering')) {
+    $schema['scf_expert_ordering'] = array(
+      'description' => 'First alert and experts ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'cat' => array(
+          'description' => 'First alert and experts id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+        'topic' => array(
+          'description' => 'Topics/Sub-topics tid.',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+        'inspire' => array(
+          'description' => 'Inspire questions tid',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'default' => 1,
+        ),
+      ),
+      'primary key' => array('nid', 'cat', 'topic', 'inspire'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_callout_track')) {
+    $schema['scf_callout_track'] = array(
+      'description' => 'Track user clicked on callot.',
+      'fields' => array(
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+
+        'callouts' => array(
+          'description' => 'The callouts steps.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+      ),
+
+      'primary key' => array('uid'),
+      'foreign keys' => array(
+        'user_callout' => array(
+          'table' => 'users',
+          'columns' => array('uid' => 'uid'),
+        ),
+      ),
+    );
+//   }
+
+//   if (!db_table_exists('scf_cross_marketing_ordering')) {
+    $schema['scf_cross_marketing_ordering'] = array(
+      'description' => 'Cross marketing ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+//   }
+
+//   if (!db_table_exists('scfp_know_doc_updated')) {
+    $schema['scfp_know_doc_updated'] = array(
+      'description' => 'Users Tracking.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The nid',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'know_id' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'Know id of document.',
+        ),
+        'preview' => array(
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'preview available or not.',
+        ),
+        'type' => array(
+          'type' => 'int',
+          'size' => 'tiny',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'description' => 'The type of changes like 1 for preview updated and 2 for attachment updated.',
+        ),
+      ),
+      'primary key' => array('nid'),
+      'foreign keys' => array(
+        'know_node' => array(
+          'table' => 'node',
+          'columns' => array('nid' => 'nid'),
+        ),
+      ),
+    );
+//   }
+
+//   if (!db_table_exists('scfp_newsletter_links_ordering')) {
+    $schema['scfp_newsletter_links_ordering'] = array(
+      'description' => 'Newsletter Block Popup Links ordering.',
+      'fields' => array(
+        'link_title' => array(
+          'description' => 'The link title.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'link_url' => array(
+          'description' => 'Link Url',
+          'length' => 255,
+          'type' => 'varchar',
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+      ),
+    );
+//   }
+
+//   if (!db_table_exists('scfp_visits_track')) {
+    $schema['scfp_visits_track'] = array(
+      'description' => 'Track user to visit on portion of site per session.',
+      'fields' => array(
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'visits' => array(
+          'description' => 'The last visited porations of site with timestamp',
+          'type' => 'varchar',
+          'length' => 255,
+        ),
+      ),
+      'primary key' => array('uid'),
+      'foreign keys' => array(
+        'visits_track_uid' => array(
+          'table' => 'users',
+          'columns' => array('uid' => 'uid'),
+        ),
+      ),
+    );
+//   }
+
+//   if (!db_table_exists('scf_industry_materials_ordering')) {
+    $schema['scf_industry_materials_ordering'] = array(
+      'description' => 'Industry materials documents ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'industry_id' => array(
+          'description' => 'The industry id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid', 'industry_id'),
+      'indexes' => array('industry_id' => array('industry_id')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_industry_contacts_ordering')) {
+    $schema['scf_industry_contacts_ordering'] = array(
+      'description' => 'Industry contacts ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'industry_id' => array(
+          'description' => 'The industry id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid', 'industry_id'),
+      'indexes' => array('industry_id' => array('industry_id')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_know_pdf_size')) {
+    $schema['scf_know_pdf_size'] = array(
+      'description' => 'Store the know pdf size in Bytes.',
+      'fields' => array(
+        'know_id' => array(
+          'description' => 'The know id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'size' => array(
+          'description' => 'The size of know pdf in Bytes',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+      'primary key' => array('know_id'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_author_mapping')) {
+    $schema['scf_author_mapping'] = array(
+      'description' => 'scf author contact mapping.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'apidata' => array(
+          'description' => 'The mapping.',
+          'type' => 'text',
+          'not null' => FALSE,
+          'size' => 'big',
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_feedback')) {
+    $schema['scf_feedback'] = array(
+      'description' => 'User Id of feedback user.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for a feedbacks.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'mail' => array(
+          'description' => 'Email',
+          'length' => 255,
+          'type' => 'varchar',
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'name' => array(
+          'description' => 'User Name',
+          'length' => 255,
+          'type' => 'varchar',
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'rating' => array(
+          'description' => 'The feedback star rating',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+        'well' => array(
+          'description' => 'What works well',
+          'type' => 'text',
+          'not null' => FALSE,
+          'size' => 'big',
+        ),
+        'improvement' => array(
+          'description' => 'What needs improving',
+          'type' => 'text',
+          'not null' => FALSE,
+          'size' => 'big',
+        ),
+        'timestamp' => array(
+          'description' => 'The Unix timestamp when the data was updated.',
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('uid' => array('uid')),
+    );
+//   }
+
+//   if (!db_table_exists('scf_api_hits_count')) {
+    $schema['scf_api_hits_count'] = array(
+      'description' => 'API hits count for the feedback display.',
+      'fields' => array(
+        'uid' => array(
+          'description' => 'The user id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+
+        'count' => array(
+          'description' => 'journey.',
+          'type' => 'int',
+          'not null' => TRUE,
+          'default' => 0,
+        ),
+      ),
+
+      'primary key' => array('uid'),
+    );
+//   }
+
+  return $schema;
+  }
+
+  /**
+   * Implements hook_install().
+   */
+  function scf_updates_install() {
+    drupal_set_installed_schema_version('scf_updates', '7000');
+  }
+
+  /**
+   * Install Feature and SPCV Roles module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7001(&$sandox) {
+    $module_list = array('ldap_servers', 'ldap_authentication', 'ldap_sso', 'ldap_authorization', 'ldap_authorization_drupal_role', 'sso_basepath');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7002(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_resource', 'scf_taxonomy_terms');
+
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong during enabling the modules; A dependency was missing.');
+    }
+
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install libraries  module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7003(&$sandox) {
+    $module_list = array('libraries');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install scfp_redis_cache module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7004(&$sandox) {
+    $module_list = array('scfp_redis_cache');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7005(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7006(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_taxonomy_terms');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install scfp_engagement, services, rest_server, scf_engagement module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7007(&$sandox) {
+    $module_list = array('scfp_engagement', 'services', 'rest_server', 'scf_engagement', 'date_popup');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install manageordering module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7008(&$sandox) {
+    $module_list = array('strategy_form_alters', 'manageordering');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7009(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7010(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7011(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7012(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7013(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install mailsystem, htmlmail, email_template, mck_ors_data, scfp_invites module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7014(&$sandox) {
+    $module_list = array('mailsystem', 'htmlmail', 'email_template', 'mck_ors_data', 'scfp_invites');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7015(&$sandox) {
+    $module_list = array('scf_engagement');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7016(&$sandox) {
+    $module_list_enable = array('scf_author');
+    if (!module_enable($module_list_enable)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7017(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_taxonomy_terms');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7018(&$sandox) {
+    $module_list = array('scf_author');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Remove the instance of the body field from my_content_type.
+   */
+  function scf_updates_update_7019() {
+    $instance = field_info_instance('node', 'body', 'author');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Making the person_id of ors_user_engagement bigint in database.
+   */
+  function scf_updates_update_7020(&$sandbox) {
+    $query = "ALTER TABLE {ors_user_engagement} CHANGE `person_id` `person_id` BIGINT UNSIGNED NOT NULL DEFAULT '0' COMMENT 'The person_id of user.'";
+    db_query($query);
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7021(&$sandox) {
+    $module_list = array('scf_author');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7022(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add default text to existing terms.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7023(&$sandox) {
+    $terms = '';
+    $vocab = taxonomy_vocabulary_machine_name_load('industry');
+    if (isset($vocab) && !empty($vocab)) {
+      $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocab->vid));
+      foreach ($terms as $term) {
+        $term->field_industry_text[LANGUAGE_NONE][0]['value'] = 'For industry practice specific developments, please go to the individual practice space.';
+        taxonomy_term_save($term);
+      }
+    }
+  }
+
+  /**
+   * Enable module scf_bookmark
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7024(&$sandox) {
+    $module_list_enable = array('scf_bookmark');
+    if (!module_enable($module_list_enable)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7025(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scf_hot_topics_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7026() {
+    if (!db_table_exists('scf_hot_topics_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_hot_topics_ordering', $schema['scf_hot_topics_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_hot_topics_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_latest_news_and_articles, scf_feeds_configuration
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7027(&$sandox) {
+    $module_enable = array('field_collection');
+    if (!module_enable($module_enable)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+    $module_list = array('scf_latest_news_and_articles', 'scf_field_master', 'scf_feeds_configuration');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+
+    // Remove the instance of the field_feed_api_publish_date_ field from my_content_type.
+    $instance = field_info_instance('node', 'field_feed_api_publish_date_', 'news_and_articles');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7029(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_taxonomy_terms');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_latest_news_and_articles, scf_feeds_configuration
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7030(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_feeds_configuration');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7031(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert scf_feeds_configuration to track tracking parameter+token in code
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7032(&$sandox) {
+    $module_list = array('scf_feeds_configuration');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert scf_taxonomy_terms
+   * Implements hook_update_N().
+   */
+  // Function scf_updates_update_7033(&$sandox) {
+  //   $module_list = array('scf_taxonomy_terms');
+  //   if (!scf_updates_features_revert($module_list)) {
+  //     throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+  //   }
+  // }.
+
+  /**
+   * Install Feature and SPCV Roles module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7034(&$sandox) {
+    $module_list = array('scfp_miscellaneous_blocks');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install Feature and Find Content module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7035(&$sandox) {
+    $module_list = array('find_content');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scfp_external_network_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7036() {
+    if (!db_table_exists('scfp_external_network_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_external_network_ordering', $schema['scfp_external_network_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_external_network_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Create table for scf_issue_tree
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7037() {
+    if (!db_table_exists('scf_issue_tree')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_issue_tree', $schema['scf_issue_tree']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_issue_tree table.');
+      }
+    }
+  }
+
+  /**
+   * Install Feature scf_issue_tree
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7038(&$sandox) {
+    $module_list = array('scf_issue_tree');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create_master_issue_tree_nodes
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7039(&$sandox) {
+    create_master_issue_tree_nodes();
+  }
+
+  /**
+   * Revert feature scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7040(&$sandox) {
+    $module_list = array('scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scf_top_tools_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7041() {
+    if (!db_table_exists('scf_top_tools_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_top_tools_ordering', $schema['scf_top_tools_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_top_tools_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7042(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7043(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install Feature scf_experts
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7044(&$sandox) {
+    $module_list = array('scf_experts');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install Feature scf_experts
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7045(&$sandox) {
+    if (db_table_exists('scfp_external_network_ordering')) {
+      db_drop_table('scfp_external_network_ordering');
+    }
+    if (!db_table_exists('scfp_external_network_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_external_network_ordering', $schema['scfp_external_network_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_external_network_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Create table for scfp_external_network_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7047() {
+    if (!db_table_exists('scfp_get_help_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_get_help_ordering', $schema['scfp_get_help_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_get_help_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Create table for scfp_external_network_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7048() {
+    if (!db_table_exists('scfp_newsletter_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_newsletter_ordering', $schema['scfp_newsletter_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_get_help_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Install module imce
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7049(&$sandox) {
+    $module_list = array('imce');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7050(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install feature scf_get_involved_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7051(&$sandox) {
+    $module_list = array('scf_get_involved_terms');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7052(&$sandox) {
+    $module_list = array('scf_engagement');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install feature scf_roles and revert scf_field_master, scf_roles
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7053(&$sandox) {
+    $module_list = array('scf_roles');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+
+    $module_list = array('scf_field_master', 'scf_roles');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install modules expert_chat, drupalchat and jquery_update
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7054(&$sandox) {
+    $module_list = array('expert_chat', 'drupalchat', 'jquery_update');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+
+  }
+
+  /**
+   * Create table for scfp_teamup_ordering.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7055() {
+    if (!db_table_exists('scfp_teamup_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_teamup_ordering', $schema['scfp_teamup_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_teamup_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Install personid_fmno
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7056(&$sandox) {
+    $module_list = array('personid_fmno');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table oauthaccesstoken_store
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7057() {
+    if (!db_table_exists('oauthaccesstoken_store')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('apiexchange_oauth');
+        db_create_table('oauthaccesstoken_store', $schema['oauthaccesstoken_store']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create oauthaccesstoken_store table.');
+      }
+    }
+  }
+
+  /**
+   * Add Podcast & Webcasts table.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7058(&$sandox) {
+    $module_list = array('podcast_webcast');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert scf_field_master, scf_resource, scf_author,scf_resource
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7059(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_author', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Remove the instance of the field_feed_image_link field from author.
+   */
+  function scf_updates_update_7060() {
+    $instance = field_info_instance('node', 'field_feed_image_link', 'author');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Create table for scf_webcasts_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7061() {
+    if (!db_table_exists('scf_webcasts_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_webcasts_ordering', $schema['scf_webcasts_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_webcasts_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Add elysia_cron module.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7062(&$sandox) {
+    $module_list = array('elysia_cron');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Remove the instance of the field_profile_url field from author.
+   */
+  function scf_updates_update_7063() {
+    $instance = field_info_instance('node', 'field_profile_url', 'author');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Revert scf_field_master,scf_author
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7064(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_author');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install Feature scf_cms_report
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7065(&$sandox) {
+    $module_list = array('scf_cms_report');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install  modules apachesolr, scfp_solr
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7066(&$sandox) {
+    $module_list = array('apachesolr', 'scfp_solr');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert scf_get_involved_terms
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7067(&$sandox) {
+    $module_list = array('scf_get_involved_terms');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_apiexchange_token_store
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7068() {
+    if (!db_table_exists('scf_apiexchange_token_store')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('apiexchange_oauth');
+        db_create_table('scf_apiexchange_token_store', $schema['scf_apiexchange_token_store']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create oauthaccesstoken_store table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7069(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scfp_articles_tracking
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7070() {
+    if (!db_table_exists('scfp_articles_tracking')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_articles_tracking', $schema['scfp_articles_tracking']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_articles_tracking table.');
+      }
+    }
+    if (!db_table_exists('scfp_users_tracking')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scfp_miscellaneous_blocks');
+        db_create_table('scfp_users_tracking', $schema['scfp_users_tracking']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_users_tracking table.');
+      }
+    }
+    $module_list = array('scf_engagement');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Update existing users scfp_users_tracking
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7071() {
+    update_users_notification_access();
+  }
+
+  /**
+   * Erase existing node data scfp_articles_tracking
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7072() {
+    if (db_table_exists('scfp_articles_tracking')) {
+      try {
+        db_delete('scfp_articles_tracking')
+          ->execute();
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to delete data from scfp_articles_tracking table.');
+      }
+    }
+  }
+
+  /**
+   * Create table scf_experts_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7073() {
+    if (!db_table_exists('scf_experts_mapping')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_experts_mapping', $schema['scf_experts_mapping']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_experts_mapping table.');
+      }
+    }
+  }
+
+  /**
+   * Remove the instance of the field_expert_category field from experts.
+   */
+  function scf_updates_update_7074() {
+    $instance = field_info_instance('node', 'field_expert_category', 'experts');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Remove the instance of the field_expert_topic field from experts.
+   */
+  function scf_updates_update_7075() {
+    $instance = field_info_instance('node', 'field_expert_topic', 'experts');
+    if ($instance) {
+      field_delete_instance($instance);
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_experts.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7076(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_experts');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert scf_feeds_configuration to track tracking parameter+token in code
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7077(&$sandox) {
+    $module_list = array('scf_feeds_configuration');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7078(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install libraries  module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7079(&$sandox) {
+    $module_list = array('views_refresh');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7080(&$sandox) {
+    drupal_flush_all_caches();
+    $module_list = array('scf_field_master', 'scf_resource', 'scf_cms_report');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_meet_our_people_links
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7081() {
+    if (!db_table_exists('scf_meet_our_people_links')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_meet_our_people_links', $schema['scf_meet_our_people_links']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_meet_our_people_links table.');
+      }
+    }
+  }
+
+  /**
+   * Add fields is_global, inspire in scf_experts_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7082() {
+    $field_is_global = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Is global serialize data',
+    );
+    $field_inspire = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Inspire serialize data',
+    );
+    if (db_table_exists('scf_experts_mapping')) {
+      db_add_field('scf_experts_mapping', 'is_global', $field_is_global);
+      db_add_field('scf_experts_mapping', 'inspire', $field_inspire);
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_experts.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7083(&$sandox) {
+    drupal_flush_all_caches();
+    $module_list = array('scf_field_master', 'scf_experts');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add fields apidata in scf_experts_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7084() {
+    $field = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Expert api data for contact, industry, geography, assistant, functions',
+    );
+
+    if (db_table_exists('scf_experts_mapping')) {
+      db_add_field('scf_experts_mapping', 'apidata', $field);
+    }
+  }
+
+  /**
+   * Install autologout  module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7085(&$sandox) {
+    $module_list = array('autologout');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_experts.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7086(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_experts');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_onboarding_stats
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7087() {
+    if (!db_table_exists('scf_onboarding_stats')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_onboarding_stats', $schema['scf_onboarding_stats']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_onboarding_stats table.');
+      }
+    }
+  }
+
+  /**
+   * Create table scf_current_journey
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7088() {
+    if (!db_table_exists('scf_current_journey')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_current_journey', $schema['scf_current_journey']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_current_journey table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature  scf_experts.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7089(&$sandox) {
+    $module_list = array('scf_experts');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add fields scfp_users_tracking in scfp_users_tracking
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7090() {
+    $field = array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'The Unix timestamp when the data was updated.',
+    );
+
+    if (db_table_exists('scfp_users_tracking')) {
+      db_add_field('scfp_users_tracking', 'first_access', $field);
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7091(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7092(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Enable module entityreference_behavior_scfp
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7093(&$sandox) {
+    $module_list_enable = array('entityreference_behavior_scfp');
+    if (!module_enable($module_list_enable)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7094(&$sandox) {
+    drupal_flush_all_caches();
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_expert_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7095() {
+    if (!db_table_exists('scf_expert_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_expert_ordering', $schema['scf_expert_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_expert_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7096(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_resource.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7097(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_resource');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master.
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7098(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_latest_news_and_articles
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7099(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_latest_news_and_articles');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master, scf_latest_news_and_articles
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7100(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_latest_news_and_articles');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Enable module scfp_autofill
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7101(&$sandox) {
+    $module_list = array('scfp_autofill');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong during enabling the modules; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scf_callout_track
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7102() {
+    if (!db_table_exists('scf_callout_track')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_callout_track', $schema['scf_callout_track']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_callout_track table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7103(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_cross_marketing_ordering, revert scf_field_master, enable scf_cross_marketing
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7104() {
+    if (!db_table_exists('scf_cross_marketing_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_cross_marketing_ordering', $schema['scf_cross_marketing_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_cross_marketing_ordering table.');
+      }
+    }
+    // Revert field_master feature.
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+    // Enable scf_cross_marketing feature.
+    $module_list = array('scf_cross_marketing');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong during enabling the modules; A dependency was missing.');
+    }
+
+  }
+
+  /**
+   * Revert feature scf_cross_marketing
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7105(&$sandox) {
+    $module_list = array('scf_cross_marketing');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Delete field field_tool_tip
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7106(&$sandox) {
+    field_delete_field('field_tool_tip');
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7107(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scfp_know_doc_updated
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7108() {
+    if (!db_table_exists('scfp_know_doc_updated')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scfp_know_doc_updated', $schema['scfp_know_doc_updated']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_know_doc_updated table.');
+      }
+    }
+  }
+
+  /**
+   * Install Feature scf_replace_hbr
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7109(&$sandox) {
+    $module_list = array('scf_replace_hbr');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install Feature scf_leading_edge
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7110(&$sandox) {
+    $module_list = array('scf_leading_edge');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add fields top_global, top_topics in scf_experts_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7111() {
+    $field_top_global = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Is top global serialize data',
+    );
+    $field_top_topics = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Top topics serialize data',
+    );
+    if (db_table_exists('scf_experts_mapping')) {
+      db_add_field('scf_experts_mapping', 'top_global', $field_top_global);
+      db_add_field('scf_experts_mapping', 'top_topics', $field_top_topics);
+    }
+  }
+
+  /**
+   * Add fields strategy_methods in scf_experts_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7112() {
+    $field = array(
+      'type' => 'text',
+      'not null' => FALSE,
+      'size' => 'big',
+      'description' => 'Strategy methods serialize data',
+    );
+    if (db_table_exists('scf_experts_mapping')) {
+      db_add_field('scf_experts_mapping', 'strategy_methods', $field);
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master and scf_cross_marketing
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7113(&$sandox) {
+    $module_list = array('scf_field_master', 'scf_cross_marketing');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_resource
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7114(&$sandox) {
+    $exclude_component = array('conditional_fields');
+    $module_list = array('scf_resource');
+    if (!scf_updates_features_revert($module_list, $exclude_component)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revert feature scf_cms_report
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7115(&$sandox) {
+    $module_list = array('scf_cms_report');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scfp_newsletter_links_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7116() {
+    if (!db_table_exists('scfp_newsletter_links_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scfp_newsletter_links_ordering', $schema['scfp_newsletter_links_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_newsletter_links_ordering table.');
+      }
+    }
+
+    variable_del('scfp_newsletter_external_link_title');
+    variable_del('scfp_newsletter_external_link');
+  }
+
+  /**
+   * Create table for scfp_know_doc_updated
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7117() {
+    if (!db_table_exists('scfp_visits_track')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scfp_visits_track', $schema['scfp_visits_track']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scfp_visits_track table.');
+      }
+    }
+  }
+
+  /**
+   * Create table for scf_industry_materials_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7118() {
+    variable_set('strategy_articles_checkbox_articles', 1);
+    variable_del('strategy_articles_checkbox_News');
+    variable_del('strategy_articles_checkbox_Practice');
+    if (!db_table_exists('scf_industry_materials_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_industry_materials_ordering', $schema['scf_industry_materials_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_industry_materials_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_resource
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7119(&$sandox) {
+    $exclude_component = array('conditional_fields');
+    $module_list = array('scf_resource');
+    if (!scf_updates_features_revert($module_list, $exclude_component)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scf_industry_contacts_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7120() {
+    if (!db_table_exists('scf_industry_contacts_ordering')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_industry_contacts_ordering', $schema['scf_industry_contacts_ordering']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_industry_contacts_ordering table.');
+      }
+    }
+  }
+
+  /**
+   * Create table for cache_field
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7121() {
+    if (!db_table_exists('cache_field')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('system');
+        db_create_table('cache_field', $schema['cache']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create cache_field table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_experts
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7122(&$sandox) {
+    $module_list = array('scf_experts');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install alt_vars  module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7123(&$sandox) {
+    $module_list = array('alt_vars');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Install views_data_export_phpexcel module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7124(&$sandox) {
+    $module_list = array('views_data_export_phpexcel');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add fields hot_topic_access in scfp_users_tracking
+   * add fields created in scf_hot_topics_ordering
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7125() {
+    $field = array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'The Unix timestamp when the data was updated.',
+    );
+
+    if (db_table_exists('scfp_users_tracking') && !db_field_exists('scfp_users_tracking', 'hot_topic_access')) {
+      db_add_field('scfp_users_tracking', 'hot_topic_access', $field);
+    }
+
+    if (db_table_exists('scf_hot_topics_ordering') && !db_field_exists('scf_hot_topics_ordering', 'created')) {
+      db_add_field('scf_hot_topics_ordering', 'created', $field);
+    }
+  }
+
+  /**
+   * Update hot_topic_access for all user.
+   */
+  function scf_updates_update_7126() {
+    update_users_hot_topic_access();
+  }
+
+  /**
+   * Revrt scf_cms_report feature.
+   */
+  function scf_updates_update_7127() {
+    $module_list = array('scf_cms_report');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revrt scf_cms_report feature.
+   */
+  function scf_updates_update_7128() {
+    $module_list = array('scf_cms_report');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Revrt scf_cms_report feature.
+   */
+  function scf_updates_update_7129() {
+    $module_list = array('scf_cms_report');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Add fields type in scfp_know_doc_updated
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7130() {
+    $field = array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'The type of changes like 1 for preview updated and 2 for attachment updated.',
+    );
+
+    if (db_table_exists('scfp_know_doc_updated') && !db_field_exists('scfp_know_doc_updated', 'type')) {
+      db_add_field('scfp_know_doc_updated', 'type', $field);
+    }
+
+    if (!db_table_exists('scf_know_pdf_size')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_know_pdf_size', $schema['scf_know_pdf_size']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_know_pdf_size table.');
+      }
+    }
+  }
+
+  /**
+   * Alter scfp_know_doc_updated column preview allow null value.
+   */
+  function scf_updates_update_7131() {
+    db_change_field('scfp_know_doc_updated', 'preview', 'preview', array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'unsigned' => TRUE,
+      'not null' => FALSE,
+      'description' => 'preview available or not.',
+    ));
+  }
+
+  /**
+   * Install SCF Logs module
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7132(&$sandox) {
+    $module_list = array('scf_logs');
+    if (!module_enable($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table scf_author_mapping
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7133() {
+    if (!db_table_exists('scf_author_mapping')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_author_mapping', $schema['scf_author_mapping']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_author_mapping table.');
+      }
+    }
+  }
+
+  /**
+   * Revert feature scf_field_master
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7134(&$sandox) {
+    $module_list = array('scf_field_master');
+    if (!scf_updates_features_revert($module_list)) {
+      throw new DrupalUpdateException('Something went wrong; A dependency was missing.');
+    }
+  }
+
+  /**
+   * Create table for scf_feedback
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7135() {
+    if (!db_table_exists('scf_feedback')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_feedback', $schema['scf_feedback']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_feedback table.');
+      }
+    }
+  }
+
+   /**
+   * Create table for scf_api_hits_count
+   * Implements hook_update_N().
+   */
+  function scf_updates_update_7136() {
+    if (!db_table_exists('scf_api_hits_count')) {
+      try {
+        $schema = drupal_get_schema_unprocessed('scf_updates');
+        db_create_table('scf_api_hits_count', $schema['scf_api_hits_count']);
+      }
+      catch (Exception $e) {
+        throw new DrupalUpdateException('Unable to create scf_api_hits_count table.');
+      }
+    }
+  }
+
+

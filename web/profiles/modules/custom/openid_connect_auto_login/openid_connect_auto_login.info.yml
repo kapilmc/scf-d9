@@ -1,0 +1,6 @@
+name: Openid Connect Auto Login
+type: module
+description: "Implements openid connect On (IDP) Auto Login."
+package: Web services
+core_version_requirement: ^9 
+configure: openid_connect_auto_login.openid_connect_auto_login_form

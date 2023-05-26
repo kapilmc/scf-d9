@@ -1,0 +1,35 @@
+<?php
+
+use Drupal\node\Entity\Node;
+
+
+//this function helps to create resource type node 
+function _pw_migrate_by_node_id($nid) {
+  if(isset($nid) && $nid > 0) {
+    $node_data = Node::load($nid); 
+    $node_title =  $node_data->getTitle();
+    $node_uid = $node_data->get('uid')->value;
+    $node_status = 0; 
+    $node_promote = 0; 
+    $node_comment = 0;  
+    $node_field_is_webcasts_podcasts = 1;
+    $node_field_podcast_webcast_category =['target_id' => $node_data->get('field_category')->target_id] ;
+    $node_field_is_migrated = 1;
+    $node_field_authors = ['target_id' => 0];
+    $node_field_who_to_contact = ['target_id' => 0];
+  
+    $create_resource = Node::create(['type' => 'resource']);
+    $create_resource->set('title', $node_title);
+    $create_resource->set('uid', $node_uid);
+    $create_resource->set('status', $node_status);
+    $create_resource->set('promote', $node_promote);
+    $create_resource->set('field_is_webcasts_podcasts', $node_field_is_webcasts_podcasts);
+    $create_resource->set('field_podcast_webcast_category', $node_field_podcast_webcast_category);
+    $create_resource->set('field_is_migrated', $node_field_is_migrated);
+    $create_resource->set('field_authors', $node_field_authors);
+    $create_resource->set('field_who_to_contact', $node_field_who_to_contact);
+    $create_resource->enforceIsNew();
+    $create_resource->save();
+
+  }
+}

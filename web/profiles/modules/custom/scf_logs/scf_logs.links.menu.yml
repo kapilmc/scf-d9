@@ -1,0 +1,4 @@
+scf_logs.scflogsform:
+  title: S & CF Logs
+  parent: system.admin
+  route_name: scf_logs.scflogsform

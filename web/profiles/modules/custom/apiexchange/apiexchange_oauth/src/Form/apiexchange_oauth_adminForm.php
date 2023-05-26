@@ -11,28 +11,39 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\file\Entity\File;
 use Drupal\Core\Database\Database;
+use Drupal\Core\Form\ConfigFormBase;
 
-class apiexchange_oauth_adminForm extends FormBase
+class apiexchange_oauth_adminForm extends ConfigFormBase
 {
     /**
      * {@inheritdoc}
      */
     public function getFormId()
     {
-        return 'apiexchnageid';
+        return 'apiexchange_oauth_adminForm';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getEditableConfigNames()
+    {
+        return ['apiexchange_oauth.settings'];
+    }
+  
     /**
      * {@inheritdoc}
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {
 
+        $config = $this->config('apiexchange_oauth.settings');
         $form['apiexchange_oauth_url'] = array(
         '#type' => 'textfield',
         '#title' => t('API Oauth Url'),
         '#required' => true,
         '#maxlength' => 255,
-        // '#default_value' => variable_get('apiexchange_oauth_url', ''),
+        '#default_value' => $config->get('apiexchange_oauth_url'),
         );
     
         $form['apiexchange_oauth_grant_type'] = array(
@@ -40,7 +51,7 @@ class apiexchange_oauth_adminForm extends FormBase
         '#title' => t('API Grant Type'),
         '#required' => true,
         '#maxlength' => 255,
-        // '#default_value' => variable_get('apiexchange_oauth_grant_type', ''),
+        '#default_value' => $config->get('apiexchange_oauth_grant_type'),
         );
     
         $form['apiexchange_oauth_scope'] = array(
@@ -48,7 +59,7 @@ class apiexchange_oauth_adminForm extends FormBase
         '#title' => t('API Oauth Scope'),
         '#required' => true,
         '#maxlength' => 255,
-        // '#default_value' => variable_get('apiexchange_oauth_scope', ''),
+        '#default_value' => $config->get('apiexchange_oauth_scope'),
         );
     
         $form['apiexchange_oauth_client_id'] = array(
@@ -56,7 +67,7 @@ class apiexchange_oauth_adminForm extends FormBase
         '#title' => t('API Oauth Client Id'),
         '#required' => true,
         '#maxlength' => 255,
-        // '#default_value' => variable_get('apiexchange_oauth_client_id', ''),
+        '#default_value' => $config->get('apiexchange_oauth_client_id'),
         );
     
         $form['apiexchange_oauth_client_secret'] = array(
@@ -64,22 +75,23 @@ class apiexchange_oauth_adminForm extends FormBase
         '#title' => t('API Oauth Client Secret'),
         '#required' => true,
         '#maxlength' => 255,
-        // '#default_value' => variable_get('apiexchange_oauth_client_secret', ''),
+        '#default_value' => $config->get('apiexchange_oauth_client_secret'),
         );
     
         $form['apiexchange_oauth_debug_mode'] = array(
         '#title' => t('Debug mode'),
         '#description' => t('Enable debug mode if you would like to see the URL when a request is being executed.'),
         '#type' => 'checkbox',
-        // '#default_value' => variable_get('apiexchange_oauth_debug_mode', ''),
+        '#default_value' => $config->get('apiexchange_oauth_debug_mode'),
         );
 
-        $form['submit'] = array(
-          '#type' => 'submit',
-          '#value' => t('Save configuration')
-          );
+        // $form['submit'] = array(
+        //   '#type' => 'submit',
+        //   '#value' => t('Save configuration')
+        //   );
     
-        return ($form);
+        // return ($form);
+        return parent::buildForm($form, $form_state);
 
     }
 
@@ -93,17 +105,11 @@ class apiexchange_oauth_adminForm extends FormBase
      */
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
+        foreach ($form_state->getValues() as $key => $value) {
+            $this->config('apiexchange_oauth.settings')
+                ->set($key, $value)->save();
     
-        // foreach (Element::children($form) as $variable) {
-        //     $config->set($variable, $form_state->getValue($form[$variable]['#parents']));
-        //   }
-        //   $config->save();
-      
-        //   if (method_exists($this, '_submitForm')) {
-        //     $this->_submitForm($form, $form_state);
-        //   }
-      
-        //   parent::submitForm($form, $form_state);
-
+            parent::submitForm($form, $form_state);
+        }
     }
 }

@@ -1,0 +1,10 @@
+name: SCFP Misc Blocks
+description: This module allows to manage misc blocks across the site
+type: module
+package: custom
+core_version_requirement: ^8 || ^9 || ^10
+version: 9.x-1.0
+
+
+
+

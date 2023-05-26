@@ -1,0 +1,4 @@
+mck_ors_data.mck_ors_dataupdateform:
+  title: ORS Data
+  parent: system.admin_config
+  route_name: mck_ors_data.mck_ors_dataupdateform

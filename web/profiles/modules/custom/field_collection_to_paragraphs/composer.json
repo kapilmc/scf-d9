@@ -1,0 +1,30 @@
+{
+  "name": "drupal/field_collection_to_paragraphs",
+  "description": "Migrates Field Collection items to Paragraphs",
+  "type": "drupal-module",
+  "keywords": [
+    "Drupal",
+    "Field Collection",
+    "Paragraphs"
+  ],
+  "homepage": "https://www.drupal.org/project/field_collection_to_paragraphs",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "codebymikey",
+      "homepage": "https://www.drupal.org/u/codebymikey",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/field_collection_to_paragraphs",
+    "source": "http://cgit.drupalcode.org/field_collection_to_paragraphs"
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/field_collection": "dev-1.x|dev-8.x-1.x|dev-3.x|dev-8.x-3.x|dev-3187610-d9-fixes|dev-3185260-drupal-9",
+    "drupal/migrate_plus": "^4.0|^5.0",
+    "drupal/migrate_tools": "^4.0|^5.0",
+    "drupal/paragraphs": "^1.0"
+  }
+}

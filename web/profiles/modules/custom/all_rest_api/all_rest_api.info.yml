@@ -1,0 +1,5 @@
+name: All Rest Api
+type: module
+description:   All Rest Api 
+core_version_requirement: ^8.8 || ^9
+package: Custom

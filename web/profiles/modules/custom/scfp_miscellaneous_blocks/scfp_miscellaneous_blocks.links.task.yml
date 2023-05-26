@@ -1,0 +1,90 @@
+
+scfp_miscellaneous_blocks.scfp_lop_support_form:
+  route_name : scfp_miscellaneous_blocks.scfp_lop_support_form
+  title: S&CF LOP support
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 1
+
+scfp_miscellaneous_blocks.scfp_external_expert_network_form:
+  route_name: scfp_miscellaneous_blocks.scfp_external_expert_network_form
+  title: External Experts Network Block
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 2
+
+scfp_miscellaneous_blocks.scfp_get_help_form:
+  route_name: scfp_miscellaneous_blocks.scfp_get_help_form
+  title: Get Help Block 
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 3
+
+scfp_miscellaneous_blocks.scfp_newsletter_form:
+  route_name: scfp_miscellaneous_blocks.scfp_newsletter_form
+  title: Manage Newsletters
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 4 
+
+scfp_miscellaneous_blocks.scfp_get_involved_form:
+  route_name: scfp_miscellaneous_blocks.scfp_get_involved_form
+  title: Get involved configuration
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 5
+
+
+scfp_miscellaneous_blocks.scfp_teamup_calendar_config_form:
+  route_name: scfp_miscellaneous_blocks.scfp_teamup_calendar_config_form
+  title: Teamup Calendar Configuration
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 6
+ 
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_links_form:
+  route_name:  scfp_miscellaneous_blocks.scfp_meet_our_people_links_form
+  title: Meet Our People Links
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 7  
+
+scfp_miscellaneous_blocks.scfp_newsletter_external_link_form:
+  route_name:  scfp_miscellaneous_blocks.scfp_newsletter_external_link_form
+  title: Newsletter External Links
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 8  
+scfp_miscellaneous_blocks.scfp_podcast_webcast_external_link_form:
+  route_name:  scfp_miscellaneous_blocks.scfp_podcast_webcast_external_link_form
+  title: Podcast/Webcast/Events External Link
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 9
+
+
+
+csvImporter.CsvImporterEconomicLinkfForm:
+  route_name: csvImporter.CsvImporterEconomicLinkfForm 
+  title: 'Economic data link'
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 10
+
+csvImporter.CsvImporterForm:
+  route_name: csvImporter.CsvImporterForm  
+  title: 'Import Economic data from CSV File'
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 11
+
+scfp_miscellaneous_blocks.scfp_mini_banner_config_form:
+  route_name: scfp_miscellaneous_blocks.scfp_mini_banner_config_form
+  title: Mini banner configuration
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 12
+scfp_engagement.admin_engagement:
+  route_name: scfp_engagement.admin_engagement  
+  title: 'Engagement configuration'
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 13
+
+
+
+scfp_miscellaneous_blocks.scfp_initiatives_form:
+  route_name: scfp_miscellaneous_blocks.scfp_initiatives_form
+  title: Initiatives configuration
+  base_route: scfp_miscellaneous_blocks.scfp_lop_support_form
+  weight: 15
+

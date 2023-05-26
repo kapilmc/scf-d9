@@ -1,0 +1,43 @@
+<?php
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+/**
+ * @file
+ * Contains scf_autofill.module.
+ */
+function get_stuff($opt,$title) {
+	$res = array();
+ if($opt == "All"){	
+  $results = \Drupal::database()->select('scfp_autofill', 'm')
+  ->extend('\Drupal\Core\Database\Query\PagerSelectExtender')
+  ->limit(100);
+  $results->fields('m');
+  $results->orderBy('m.id','DESC');
+  $res = $results->execute()->fetchAll();
+  $ret = [];
+ }else{
+	 $results = \Drupal::database()->select('scfp_autofill', 'm')
+  ->extend('\Drupal\Core\Database\Query\PagerSelectExtender')
+  ->limit(15);
+  $results->fields('m');
+  $results->orderBy('m.id','DESC');
+  $results->condition('title', '%' . $title . '%', 'LIKE');
+  $res = $results->execute()->fetchAll();
+  $ret = [];
+ }
+    foreach ($res as $row) {
+        $url_delete = Url::fromRoute('scfp_autofill.delete', ['id' => $row->id]);
+        $url_edit = Url::fromRoute('scfp_autofill.openid_connect_auto_login', ['id' => $row->id]);
+        
+        $linkDelete = Link::fromTextAndUrl('Delete', $url_delete);
+        $linkEdit = Link::fromTextAndUrl('Edit', $url_edit);
+
+      $ret[] = [
+        // 'id' => $row->id,
+		'title' => $row->title,
+        'edit' =>  $linkEdit,
+        'delete' => $linkDelete,
+     ];
+    }
+    return $ret;
+}

@@ -1,0 +1,55 @@
+<?php
+/**
+ * Implements hook_schema().
+ */
+function scfp_engagement_schema() {
+  $schema['engagement_user'] = array(
+   'description' => 'custom table for engagement user',
+   'fields' => array(
+       'eid' => array(
+         'description' => 'Engagment id',
+         'type' => 'int',
+         'unsigned' => TRUE,
+         'not null' => TRUE,
+         'default' => 0,
+       ),
+       'uid' => array(
+         'description' => 'User id',
+         'type' => 'varchar',
+         'length' => 200,
+         'not null' => TRUE,
+         'default' => '',
+       ),
+       'is_author' => array(
+         'description' => 'Is engagement author.',
+         'type' => 'int',
+         'unsigned' => TRUE,
+         'not null' => TRUE,
+         'default' => 0,
+       ),
+       'is_default' => array(
+         'description' => 'Is engagement default.',
+         'type' => 'int',
+         'unsigned' => TRUE,
+         'not null' => TRUE,
+         'default' => 0,
+       ),
+       'is_no' => array(
+         'description' => 'Is no engagement.',
+         'type' => 'int',
+         'unsigned' => TRUE,
+         'not null' => TRUE,
+         'default' => 0,
+       ),
+       'timestamp' => array(
+         'description' => 'Timestamp of of last access',
+         'type' => 'int',
+         'unsigned' => TRUE,
+       ),
+
+   ),
+   'primary key' => array('eid', 'uid'),
+  );
+
+return $schema;
+}

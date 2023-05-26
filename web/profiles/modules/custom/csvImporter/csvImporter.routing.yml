@@ -1,0 +1,16 @@
+csvImporter.CsvImporterEconomicLinkfForm:
+  path: 'admin/content/manage/economic-portal-link'
+  defaults:
+    _form: '\Drupal\csvImporter\Form\csvImporter_economic_link_form'
+    _title: 'Economic data link'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+csvImporter.CsvImporterForm:
+  path: 'admin/content/manage/csvImporter'
+  defaults:
+    _form: '\Drupal\csvImporter\Form\csvImporter_form'
+    _title: 'Import Economic data from CSV File'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'

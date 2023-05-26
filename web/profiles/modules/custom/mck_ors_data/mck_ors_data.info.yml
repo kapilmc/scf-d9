@@ -1,0 +1,7 @@
+name: Custom module
+type: module
+description: Import Data from ORS database.
+package: custom
+core_version_requirement: ^8 || ^9 || ^10
+version: 9.x-1.0
+# files[] = mck_ors_data.admin.inc

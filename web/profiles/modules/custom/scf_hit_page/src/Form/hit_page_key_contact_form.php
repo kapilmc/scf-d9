@@ -135,9 +135,12 @@ class hit_page_key_contact_form extends ConfigFormBase {
 function home_key_contact_form_add_more(array &$form, FormStateInterface $form_state)
 { 
  
-  $val = $form_state->getValues();
   $tempstore = \Drupal::service('tempstore.private')->get('scf_hit_page');
-  $tempstore->set('num_rows_key_contact_page', $tempstore->get('num_rows_key_contact_page') + 1);
+  if (empty($tempstore->get('num_rows_key_contact_page')) || $tempstore->get('num_rows_key_contact_page') == null) {
+    $tempstore->set('num_rows_key_contact_page', 1);
+  }else{
+    $tempstore->set('num_rows_key_contact_page', $tempstore->get('num_rows_key_contact_page') + 1);
+  }
   $form_state->setRebuild();
 
 

@@ -1,0 +1,33 @@
+<?php
+
+function delete_nodes_process($rows, &$context){
+    $message = 'Interting ALL Nodes ...';
+    $results = array();
+    $query = \Drupal::database();
+    foreach ($rows as $row) {
+
+        // $query ->insert('csvImporter')
+        //     ->fields(['country'=>$row[1]])
+        //     ->execute();
+        $results[] = $row[1]; 
+    }
+
+   
+    $context['message'] = $message;
+    $context['results'] = $results;
+}
+
+function delete_nodes_finished($success, $results, $operations) {
+    // The 'success' parameter means no fatal PHP errors were detected. All
+    // other error management should be handled using 'results'.
+    if ($success) {
+        $message = \Drupal::translation()->formatPlural(
+            count($results),
+            'One post processed.', '@count posts processed.'
+        );
+    }
+    else {
+        $message = t('Finished with an error.');
+    }
+    \Drupal::messenger()->addStatus($message);
+}

@@ -1,0 +1,82 @@
+scfp_autofill.scfp_autofill_form_content:
+  title: Managing
+  parent: system.admin
+  route_name: system.admin
+  # weight: 0
+
+scfp_autofill.openid_connect_auto_login:
+  title: Manage autofill keywords
+  parent: scfp_autofill.scfp_autofill_form_content
+  route_name: scfp_autofill.openid_connect_auto_login
+  weight: 1
+
+
+scfp_landing_page.HomeTopTopicsOrderingForm_content:
+  title: Manage Hot topics/Top Resources/News
+  parent: scfp_autofill.scfp_autofill_form_content
+  route_name: scfp_landing_page.HomeTopTopicsOrderingForm
+  weight: 2
+
+scfp_landing_page.HomeTopTopicsOrderingForm:
+  title: Manage  home page hot topics
+  parent: scfp_landing_page.HomeTopTopicsOrderingForm_content
+  route_name: scfp_landing_page.HomeTopTopicsOrderingForm
+  weight: 0
+
+scfp_landing_page.HomeTopResourcesOrderingForm:
+  title: Manage  home page top resources
+  parent: scfp_landing_page.HomeTopTopicsOrderingForm_content
+  route_name: scfp_landing_page.HomeTopResourcesOrderingForm
+  weight: 1
+
+scfp_landing_page.HomeNewsOrderingForm:
+  title: Manage  home page news  
+  parent: scfp_landing_page.HomeTopTopicsOrderingForm_content
+  route_name: scfp_landing_page.HomeNewsOrderingForm
+  weight: 2    
+
+
+
+manageordering.resource_ordering_form_content:
+  title: Resource ordering
+  parent: scfp_autofill.scfp_autofill_form_content
+  route_name:  manageordering.resource_ordering_form
+  weight: 3
+
+
+
+manageordering.resource_ordering_form:
+  title: Inspire your CEO/CFO dialogue
+  parent: manageordering.resource_ordering_form_content
+  route_name: manageordering.resource_ordering_form
+  weight: 0
+
+manageordering.top_tools_ordering_form:
+  title: Top Tools
+  parent: manageordering.resource_ordering_form_content
+  route_name: manageordering.top_tools_ordering_form
+  weight: 1
+
+manageordering.ContinuosLearningOrderingForm:
+  title: Navigate-Learning Programs
+  parent: manageordering.resource_ordering_form_content
+  route_name:  manageordering.ContinuosLearningOrderingForm
+  weight: 2    
+
+manageordering.hot_topics_ordering_form:
+  title: Hot Topics
+  parent: manageordering.resource_ordering_form_content
+  route_name:  manageordering.hot_topics_ordering_form
+  weight: 3
+
+manageordering.cross_marketing_ordering_form:
+  title: Cross marketing
+  parent: manageordering.resource_ordering_form_content
+  route_name:  manageordering.cross_marketing_ordering_form
+  weight: 4
+
+manageordering.industry_materials_ordering_form:
+  title: S&CF industry materials
+  parent: manageordering.resource_ordering_form_content
+  route_name:  manageordering.industry_materials_ordering_form
+  weight: 5      

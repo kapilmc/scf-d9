@@ -1,0 +1,17 @@
+scfp_engagement.admin_know:
+  path: 'admin/config/know-api'
+  defaults:
+    _form: '\Drupal\scfp_engagement\Form\AdminKnow'
+    _title: 'Know API configuration'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'
+
+scfp_engagement.admin_engagement:
+  path: 'admin/content/manage/engagement-config'
+  defaults:
+    _form: '\Drupal\scfp_engagement\Form\AdminEngagement'
+    _title: 'Engagement configuration'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'

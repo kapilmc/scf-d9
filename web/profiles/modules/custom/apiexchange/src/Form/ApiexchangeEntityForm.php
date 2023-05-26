@@ -26,6 +26,19 @@ class ApiexchangeEntityForm extends FormBase
     public function buildForm(array $form, FormStateInterface $form_state)
     {
 
+
+
+        $conn = Database::getConnection();
+        $data = [];
+        if (isset($_GET['id'])) {
+            $query = $conn->select('apiexch ̰ange', 'm')
+                ->condition('id', $_GET['id'])
+                ->fields('m');
+            $data = $query->execute()->fetchAssoc();
+            //  $form['#theme'] = ['updatepage'];
+
+        }
+
         $form['new'] = array(
         '#type' => 'hidden',
         '#value' => empty($api) ? 1 : 0,
@@ -66,8 +79,9 @@ class ApiexchangeEntityForm extends FormBase
         '#options' => array('GET' => 'GET', 'POST' => 'POST'),
         '#title' => t('API Request Type'),
         '#required' => true,
-        // '#default_value' => empty($api) ? 'GET' : $api['type'],
         '#default_value' => (isset($data['type'])) ? $data['type'] : '',
+        // '#default_value' => empty($api) ? 'GET' : $api['type'],
+        // '#default_value' => (isset($data['type'])) ? $data['type'] : '',
         '#description' => t('Type of API request (POST or Post)'),
         );
         $form['return_type'] = array(
@@ -76,19 +90,24 @@ class ApiexchangeEntityForm extends FormBase
         '#title' => t('API Response Type'),
         '#required' => true,
         // '#default_value' => empty($api) ? 'GET' : $api['return_type'],
+        '#default_value' => (isset($data['return_type'])) ? $data['return_type'] : '',
         '#description' => t('Type of API response (POST or Post)'),
         );
     
         $form['url'] = array(
         '#type' => 'textfield',
         // '#default_value' => empty($api) ? '' : $api['url'],
+        '#default_value' => (isset($data['url'])) ? $data['url'] : '',
         '#title' => t('API URL'),
         '#required' => true,
         '#description' => t('URL of API e.g. /v1/mckinsey_insights/popular_articles'),
         );
         $form['custom_header'] = array(
         '#type' => 'textarea',
+        
         // '#default_value' => empty($api) ? '' : $api['custom_header'],
+        '#default_value' => (isset($data['custom_header'])) ? $data['custom_header'] : '',
+    
         '#title' => t('Custom Header'),
         '#required' => false,
         '#description' => t('Custom header of API e.g. Content-Type:application/json. Enter one header per line.'),
@@ -96,6 +115,7 @@ class ApiexchangeEntityForm extends FormBase
         $form['detail'] = array(
         '#type' => 'textarea',
         // '#default_value' => empty($api) ? '' : $api['detail'],
+        '#default_value' => (isset($data['detail'])) ? $data['detail'] : '',
         '#title' => t('API Description'),
         '#required' => true,
         '#description' => t('Short description of API.'),
@@ -103,6 +123,8 @@ class ApiexchangeEntityForm extends FormBase
         $form['debug'] = array(
         '#type' => 'checkbox',
         '#title' => t('Debug Mode'),
+        '#default_value' => (isset($data['debug'])) ? $data['debug'] : '',
+        
         // '#default_value' => empty($api) ? 0 : $api['debug'],
         );
         // $form['uid'] = array(

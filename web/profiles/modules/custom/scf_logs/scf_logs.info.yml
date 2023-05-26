@@ -1,0 +1,7 @@
+name: SCF Logs
+type: module
+description: SCF Content Publish / Unpublish logs 
+core_version_requirement: ^8.8 || ^9
+package: custom
+version: 9.x-1.0
+configure: scf_logs.scflogsform

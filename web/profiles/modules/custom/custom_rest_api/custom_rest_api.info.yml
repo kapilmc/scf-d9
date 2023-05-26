@@ -1,0 +1,6 @@
+name: custom_rest_api
+type: module
+description: All api scf project.
+core_version_requirement: ^8.8 || ^9
+package: custom
+version: 1.2

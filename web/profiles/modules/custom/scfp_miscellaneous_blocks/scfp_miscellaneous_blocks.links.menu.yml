@@ -1,0 +1,22 @@
+scfp_miscellaneous_blocks.scfp_heap_config_form:
+  title: Heap configuration
+  parent: system.admin_config
+  route_name: scfp_miscellaneous_blocks.scfp_heap_config_form
+scfp_miscellaneous_blocks.factiva_api_config_form:
+  title: Factiva API configuration
+  parent: system.admin_config
+  route_name: scfp_miscellaneous_blocks.factiva_api_config_form  
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_tab_form:
+  title: Meet Our People Config
+  parent: system.admin_config
+  route_name: scfp_miscellaneous_blocks.scfp_meet_our_people_tab_form
+
+scfp_miscellaneous_blocks.scfp_know_notification:
+  title: Know notification subscriptions
+  parent: system.admin_config
+  route_name: scfp_miscellaneous_blocks.scfp_know_notification
+
+
+

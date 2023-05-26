@@ -1,0 +1,8 @@
+name: SCFP Landing page
+type: module
+description: Manage hot topics and top resources
+core_version_requirement: ^8 || ^9 || ^10
+package: SCFP Modules
+version: 1.2
+
+

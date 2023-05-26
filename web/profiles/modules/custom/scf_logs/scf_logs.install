@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * @file
+ */
+
+ /**
+  * Implements hook_schema().
+  */
+ function scf_logs_schema() {
+  $schema = [];
+  $schema['scf_logs'] = array(
+    'description' => 'Content publish / unpublish logs',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary identifier for a logs.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'The primary identifier for a node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'The {node_type}.type of this node.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'title' => array(
+        'description' => 'The title of this node, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uid' => array(
+        'description' => 'The {users}.uid that owns this node; initially, this is the user that created it.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'status' => array(
+        'description' => '0: unpulihsed, 1:published, 2:deleted',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 1,
+      ),
+      'changed' => array(
+        'description' => 'The Unix timestamp when the node was changed.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'comment' => array(
+        'description' => 'Comment.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'content' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+        'description' => 'node serialize data',
+      ),
+    ),
+    'primary key' => array('id'),
+    'indexes' => array(
+      'uid' => array('uid'),
+      'nid' => array('nid'),
+      'node_type'           => array(array('type', 4)),
+      'node_changed'        => array('changed'),
+    ),
+  );
+  return $schema;
+}
+
+
+  /**
+   * Implements hook_install().
+   */
+//   function scf_logs_install() {
+//     drupal_set_installed_schema_version('scf_logs', '7000');
+//   }

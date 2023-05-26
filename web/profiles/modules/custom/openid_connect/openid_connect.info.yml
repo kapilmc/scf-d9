@@ -1,0 +1,9 @@
+name: OpenID Connect
+type: module
+description: "A pluggable client implementation for the OpenID Connect protocol."
+package: OAuth2
+core_version_requirement: ^9 
+# configure: openid_connect.openid_connect_admin_form
+# dependencies:
+#   - drupal:entity
+#   - drupal:ctools

@@ -1,0 +1,4 @@
+scfp_solr.ScfpSolrForm:
+  title: S&CF Solr Configuration
+  parent: system.admin_config
+  route_name: scfp_solr.ScfpSolrForm

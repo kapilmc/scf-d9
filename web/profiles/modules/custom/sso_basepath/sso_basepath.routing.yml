@@ -1,0 +1,27 @@
+sso_basepath.sso_basepath_admin_form:
+  path: '/admin/config/ssobasepath'
+  defaults:
+    _form: '\Drupal\sso_basepath\Form\sso_basepath_admin_form'
+    _title: 'SSO Base Path settings'
+  requirements:    
+    _permission : 'administer sso_basepath settings'
+    _access: 'TRUE'
+
+
+
+
+
+
+
+
+
+
+# $items['admin/config/ssobasepath'] = array(
+#     'title' => 'SSO Base Path settings',
+#     'description' => 'To check if it is sso url or not and do some settings based on that',
+#     'page callback' => 'drupal_get_form',
+#     'page arguments' => array('sso_basepath_admin'),
+#     'access arguments' => array('administer sso_basepath settings'),
+#     'type' => MENU_NORMAL_ITEM,
+#     'file' => 'sso_basepath.admin.inc',
+#    );

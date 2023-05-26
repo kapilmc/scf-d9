@@ -1,0 +1,161 @@
+manageordering.resource_ordering_form:
+  path: '/admin/managing/manage-resource-order'
+  defaults:
+    _form: '\Drupal\manageordering\Form\resource_ordering_form'
+    _title: 'Resource ordering'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+manageordering.resource_ordering_form_extra:
+  path: '/admin/managing/manage-resource-order/{journey_tid}/{topic_tid}/{cat}/{seven}'
+  defaults:
+    _form: '\Drupal\manageordering\Form\resource_ordering_form'
+    _title: 'Resource ordering'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'  
+
+manageordering.ContinuosLearningOrderingForm:
+  path: '/admin/managing/manage-resource-order/learning-programs'
+  defaults:
+    _form: '\Drupal\manageordering\Form\continuous_learning_ordering_form'
+    _title: 'Manage Ordering of S&CF Learning Programs'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+manageordering.cross_marketing_ordering_form:
+  path: '/admin/managing/manage-resource-order/cross-marketing'
+  defaults:
+    _form: '\Drupal\manageordering\Form\cross_marketing_ordering_form'
+    _title: 'Manage ordering of cross marketing'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+manageordering.expert_ordering_form:
+  path: '/admin/managing/manage-first-alert-and-expert-order'
+  defaults:
+    _form: '\Drupal\manageordering\Form\expert_ordering_form'
+    _title: 'Manage experts ordering'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+manageordering.expert_report_form:
+  path: '/admin/admin-dashboard/expert-report'
+  defaults:
+    _form: '\Drupal\manageordering\Form\expert_report_form'
+    _title: 'Experts Report'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+manageordering.export_resource_report_form:
+  path: '/admin/admin-dashboard/export-reources'
+  defaults:
+    _form: '\Drupal\manageordering\Form\export_resource_report_form'
+    _title: 'Export resources by resource category'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+manageordering.hot_topics_ordering_form:
+  path: '/admin/managing/manage-resource-order/hot-topics'
+  defaults:
+    _form: '\Drupal\manageordering\Form\hot_topics_ordering_form'
+    _title: 'Manage ordering of hot topics '
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+    
+manageordering.hot_topics_ordering_remove:
+  path: 'admin/managing/manage-resource-order/hot-topics-remove/{nid}'
+  defaults:
+    _controller: '\Drupal\manageordering\Controller\manageorderingController::remove_item_from_hot_topics'
+    _title: 'Hot topics remove '
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+manageordering.hot_topics_ordering_form_autocomplete:
+  path: '/admin/managing/manage-resource-order/hot-topics/autocomplete'
+  defaults:
+    # _form: '\Drupal\manageordering\Form\hot_topics_ordering_form'
+    _controller: '\Drupal\manageordering\Controller\manageorderingController::autocomplete_item_from_hot_topics'
+    _title: 'Hot topics'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+
+
+
+
+  
+
+manageordering.industry_contacts_ordering_form:
+  path: '/admin/managing/manage-first-alert-and-expert-order/industry-contacts'
+  defaults:
+    _form: '\Drupal\manageordering\Form\industry_contacts_ordering_form'
+    _title: 'S&CF industry contacts '
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+          
+manageordering.industry_materials_ordering_form:
+  path: '/admin/managing/manage-resource-order/industry-materials'
+  defaults:
+    _form: '\Drupal\manageordering\Form\industry_materials_ordering_form'
+    _title: 'Manage ordering of S&CF industry materials'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+# manageordering.resource_ordering_form:
+#   path: '/admin/managing/manage-resource-order/{ $tid}'
+#   defaults:
+#     _form: '\Drupal\manageordering\Form\resource_ordering_form'
+#     _title: 'Resource ordering'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE' 
+
+manageordering.top_tools_ordering_form:
+  path: '/admin/managing/manage-resource-order/top-tools'
+  defaults:
+    _form: '\Drupal\manageordering\Form\top_tools_ordering_form'
+    _title: 'Manage ordering of Top tools'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE' 
+
+# manageordering.top_tools_ordering_form:
+#   path: '/admin/managing/manage-resource-order/top-tools-remove/%'
+#   defaults:
+#     _form: '\Drupal\manageordering\Form\top_tools_ordering_form'
+#     _title: 'Top Tools'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE' 
+
+# manageordering.top_tools_ordering_form:
+#   path: '/admin/managing/manage-resource-order/top-tools/autocomplete'
+#   defaults:
+#     _form: '\Drupal\manageordering\Form\top_tools_ordering_form'
+#     _title: 'Top Tools'
+#   requirements:
+#     _permission: 'access content'
+#     _access: 'TRUE' 
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+manageordering.resource_ordering_form:
+  route_name : manageordering.resource_ordering_form
+  title: Inspire your CEO/CFO dialogue
+  base_route: manageordering.resource_ordering_form
+  weight: 1
+
+# manageordering.resource_ordering_form:
+#   route_name : manageordering.resource_ordering_form
+#   title: Compete to win
+#   base_route: manageordering.resource_ordering_form
+#   weight: 2  
+# manageordering.resource_ordering_form:
+#   route_name : manageordering.resource_ordering_form
+#   title: Lead your  enagagement
+#   base_route: manageordering.resource_ordering_form
+#   weight: 3 
+manageordering.top_tools_ordering_form:
+  route_name : manageordering.top_tools_ordering_form
+  title: Top Tools
+  base_route: manageordering.resource_ordering_form
+  weight: 4
+manageordering.ContinuosLearningOrderingForm:
+  route_name : manageordering.ContinuosLearningOrderingForm
+  title: Navigate-Learning Programs
+  base_route: manageordering.resource_ordering_form
+  weight: 5
+
+manageordering.hot_topics_ordering_form:
+  route_name : manageordering.hot_topics_ordering_form
+  title: Hot Topics
+  base_route: manageordering.resource_ordering_form
+  weight: 6  
+manageordering.cross_marketing_ordering_form:
+  route_name : manageordering.cross_marketing_ordering_form
+  title: Cross marketing
+  base_route: manageordering.resource_ordering_form
+  weight: 7    
+
+manageordering.industry_materials_ordering_form:
+  route_name : manageordering.industry_materials_ordering_form
+  title: S&CF industry materials
+  base_route: manageordering.resource_ordering_form
+  weight: 8

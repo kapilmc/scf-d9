@@ -31,7 +31,7 @@ use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-
+use Drupal\redirect\Entity\Redirect;
 use Drupal\Core\Render\Markup;
 
 /**
@@ -39,13 +39,21 @@ use Drupal\Core\Render\Markup;
  */
 class ApiexchangeController extends ControllerBase
 {
-    // $form=\Drupal::formBuilder()->getForm(Drupal\apiexchange\Form\ApiexchangeEntityForm);
+
    
     public function mypage()
     {
-        // return $form;
-        // create table header
-        $mypage = [
+        
+        $form['add'] = [
+            '#type' => 'link',
+            '#title' =>$this->t('Add New Api'),
+            '#url'=> url::fromRoute('apiexchnage.apiexchangeentity_form'),
+        ];
+
+
+
+
+        $header = [
             'id' => $this->t('Key'),
             // 'key' => $this->t('Key'),
             'name' => $this->t('API Name'),
@@ -54,16 +62,23 @@ class ApiexchangeController extends ControllerBase
             'debug' => $this->t('Debug'),
             'edit' => $this->t('Edit'),
             'delete' => $this->t('Delete'),
+          
         ];
 
         // get data from database
         
         $query = \Drupal::database()->select('apiexchange', 'm');
         $query->fields(
-            'm', ['id', 'name', 'type', 'return_type', 'url', 'custom_header', 'detail', 'debug']
+            'm', ['id', 
+            'name',
+             'type',
+              'return_type',
+               'url',
+                'custom_header',
+                 'detail',
+                  'debug']
         );
-        // $pager = $query->extend('Drupal\Core\Database\Query\PagerSelectExtender')->limit(15);
-        // $results = $pager->execute()->fetchAll();
+       
         $results = $query->execute()->fetchAll();
         
         // dd($results);
@@ -71,31 +86,26 @@ class ApiexchangeController extends ControllerBase
         $rows = [];
         foreach ($results as $data) {
             // $url_delete = Url::fromRoute('demo.delete_form', ['id' => $data->id], []);
-            $url_edit = Url::fromRoute('apiexchnage.apiexchangeentity_form', ['id' => $data->id]);
+            $url_edit = Url::fromRoute('apiexchnage.apiexchangeentity_editform', ['id' => $data->id]);
             // dd($url_edit);
 
-            // $url_view = Url::fromRoute('demo.show_data', ['id' => $data->id], []);
-            // $url_search = Url:apiexchnage.apiexchangeentity_editform:fromRoute('demo.search_data', ['name' => $data->name], []);
-            // $linkDelete = Link::fromTextAndUrl('Delete', $url_delete);
             $linkEdit = Link::fromTextAndUrl('Edit', $url_edit);
-            // $linkView = Link::fromTextAndUrl('View', $url_view);
-             // $linkSearch = Link::fromTextAndUrl('Search', $url_search);
-
-            //  dd($data);
+      
             
 
             // get data
+            if ($data->debug ==0){
+                $debug = "No";
+            }else{$debug = "Yes";}
             $rows[] = [
                 'id' => $data->id,
                 // 'key' => $data->key,
                 'name'=>$data->name,
                 'type' => $data->type,
                 'url' => $data->url,
-                'debug' => $data->debug,
+                'debug' =>$debug,
                 'edit' =>  $linkEdit,
-                // 'delete' => $linkDelete,
-                // 'search' =>  $linkSearch
-                // 'view' => $linkView,
+           
             ];
         }
 // dd($rows);
@@ -112,16 +122,14 @@ class ApiexchangeController extends ControllerBase
         // render table
         $form['table'] = [
             '#type' => 'table',
-            '#header' => $mypage,
+            '#header' => $header,
             '#rows' => $rows,
 
             '#empty' => $this->t('No data found'),
         ];
 
 
-        //  $form['pager'] = array(
-        //  '#type' => 'pager'
-        //  );
+     
 
            return $form;
 

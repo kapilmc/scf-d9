@@ -1,0 +1,16 @@
+name: SCFP Podcasts/Webcasts Migrate
+description: Run only one time and disable this module after run.
+type: module
+package: SCFP Modules
+core_version_requirement: ^9 || ^10
+version: 9.x-1.0
+
+
+
+
+
+
+
+
+
+

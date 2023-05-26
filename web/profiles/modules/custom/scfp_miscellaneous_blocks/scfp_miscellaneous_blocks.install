@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall updates functions for the SPCV site.
+ */
+
+/**
+ * Implements hook_schema().
+ **/
+ function scfp_miscellaneous_blocks_schema() {
+   $schema =[];
+//    if (!db_table_exists('scfp_external_network_ordering')) {
+     $schema['scfp_external_network_ordering'] = array(
+       'description' => 'External network Block Links ordering.',
+       'fields' => array(
+         'id' => array(
+           'description' => 'The id',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'link_title' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'link_url' => array(
+           'description' => 'active or inactive',
+           'length' => 255,
+           'type' => 'varchar',
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'weight' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'int',
+           'unsigned' => FALSE,
+           'not null' => TRUE,
+         ),
+       ),
+     );
+//    }
+    //  if (!db_table_exists('scfp_get_help_ordering')) {
+         $schema['scfp_get_help_ordering'] = array(
+             'description' => 'External network Block Links ordering.',
+             'fields' => array(
+                 'id' => array(
+                     'description' => 'The id',
+                     'type' => 'int',
+                     'unsigned' => TRUE,
+                     'not null' => TRUE,
+                 ),
+                 'link_title' => array(
+                     'description' => 'The ordering of content.',
+                     'type' => 'varchar',
+                     'length' => 255,
+                     'not null' => TRUE,
+                     'default' => '',
+                 ),
+                 'link_url' => array(
+                     'description' => 'active or inactive',
+                     'length' => 255,
+                     'type' => 'varchar',
+                     'not null' => TRUE,
+                     'default' => '',
+                 ),
+                 'weight' => array(
+                     'description' => 'The ordering of content.',
+                     'type' => 'int',
+                     'unsigned' => FALSE,
+                     'not null' => TRUE,
+                 ),
+             ),
+         );
+    //  }
+//    if (!db_table_exists('scfp_newsletter_ordering')) {
+     $schema['scfp_newsletter_ordering'] = array(
+       'description' => 'Newsletter ordering.',
+       'fields' => array(
+         'id' => array(
+           'description' => 'The id',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'newsletter_title' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'newsletter_email' => array(
+           'description' => 'active or inactive',
+           'length' => 255,
+           'type' => 'varchar',
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'newsletter_tooltip' => array(
+           'description' => 'active or inactive',
+           'length' => 800,
+           'type' => 'varchar',
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'weight' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'int',
+           'unsigned' => FALSE,
+           'not null' => TRUE,
+         ),
+       ),
+     );
+//    }
+//    if (!db_table_exists('scfp_teamup_ordering')) {
+     $schema['scfp_teamup_ordering'] = array(
+       'description' => 'Teamup Links ordering.',
+       'fields' => array(
+         'id' => array(
+           'description' => 'The id',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'link_title' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'link_url' => array(
+           'description' => 'active or inactive',
+           'length' => 255,
+           'type' => 'varchar',
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'weight' => array(
+           'description' => 'The ordering of content.',
+           'type' => 'int',
+           'unsigned' => FALSE,
+           'not null' => TRUE,
+         ),
+       ),
+     );
+//    }
+//    if (!db_table_exists('scfp_articles_tracking')) {
+     $schema['scfp_articles_tracking'] = array(
+       'description' => 'Articles Tracking.',
+       'fields' => array(
+         'nid' => array(
+           'description' => 'The nid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'changed' => array(
+           'type' => 'int',
+           'not null' => TRUE,
+           'default' => 0,
+           'description' => 'Timestamp for when user updated/created the content.',
+         ),
+         'type' => array(
+           'description' => 'Content type',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => FALSE,
+         ),
+       ),
+     );
+//    }
+//    if (!db_table_exists('scfp_users_tracking')) {
+     $schema['scfp_users_tracking'] = array(
+       'description' => 'Users Tracking.',
+       'fields' => array(
+         'uid' => array(
+           'description' => 'The uid',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'access' => array(
+           'type' => 'int',
+           'not null' => TRUE,
+           'default' => 0,
+           'description' => 'Timestamp when user last accessed notification.',
+         ),
+       ),
+     );
+//    }
+   return $schema;
+ }
+
+/**
+ * Implements hook_uninstall().
+ */
+function scfp_miscellaneous_blocks_uninstall() {
+    drupal_uninstall_schema('scfp_miscellaneous_blocks');
+}
