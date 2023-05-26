@@ -1,0 +1,4 @@
+scfp_engagement.admin_know:
+  title: Know API Configuration
+  parent: system.admin_config
+  route_name: scfp_engagement.admin_know

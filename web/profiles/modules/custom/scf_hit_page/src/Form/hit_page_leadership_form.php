@@ -13,7 +13,7 @@ use Drupal\Core\Routing;
 use Drupal\file\Entity\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Form\ConfigFormBase;
-class hit_page_leadership_form extends FormBase {
+class hit_page_leadership_form extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
@@ -21,7 +21,20 @@ class hit_page_leadership_form extends FormBase {
     return 'hit_page_leadership_form';
   }
   
+ /** 
+   * {@inheritdoc}
+   */
+  protected function getEditableConfigNames() {
+    return ['hit_page_leadership.settings'];
+  }
+
+
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->config('hit_page_leadership.settings');
+
+
+
+
   
     $query = \Drupal::database()->select('scf_hit_page_leadership_ordering', 'r');
     $query->join('node_field_data', 'n', 'r.nid = n.nid');
@@ -42,6 +55,13 @@ class hit_page_leadership_form extends FormBase {
     }
  
     $form['items']['#tree'] = TRUE;
+
+    $form['hit_page_leadership_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#default_value' => $config->get('hit_page_leadership_title'),
+      '#weight' => -1,
+    );
 
     if($form_state->getValue('num_rows') == NULL){
       // dd($data);
@@ -137,13 +157,9 @@ public function Add_Leadership(array &$form, FormStateInterface $form_state) {
 
     
     $data = $form_state->getValues();
+    $this->config('hit_page_leadership.settings')
+    ->set('hit_page_leadership_title',  $data['hit_page_leadership_title'])->save();
     
-
-  //   $data = [
-  //     'hit_page_leadership_title'=> $form_state->getValue('hit_page_leadership_title'),
-   
-
-  // ];
 
     foreach ($data['items'] as $id => $item) {
       // dd($item['weight']);

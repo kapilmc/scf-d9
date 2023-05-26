@@ -1,0 +1,27 @@
+email_template.EmailTemplateForm:
+  path: '/admin/config/content/templates'
+  defaults:
+    _form: '\Drupal\email_template\Form\email_template_admin_form'
+    _title: 'Manage Email Templates'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+email_template.UpdateForm:
+  path: '/admin/config/content/templates/edit'
+  defaults:
+    _form: '\Drupal\email_template\Form\email_template_admin_form'
+    _title: 'Edit Email Template'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+email_template.Emailtemplatedatashow:
+  path: '/admin/config/content/template'
+  defaults:
+    _controller: 'Drupal\email_template\Controller\EmailTemplateController::emaildata'
+    _title: 'Manage Email Templates'
+  requirements:
+    _permission: 'access content'
+
+
+
+

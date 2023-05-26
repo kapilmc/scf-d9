@@ -1,0 +1,17 @@
+scf_logs.scflogsform:
+  path: '/admin/scf-logs'
+  defaults:
+    _form: '\Drupal\scf_logs\Form\scf_logs_form'
+    _title: 'S & CF Logs'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+scf_logs.scflogsfiltercontent:
+  path: '/admin/scf-logs/{type}/{status}'
+  defaults:
+    _controller: '\Drupal\scf_logs\Controller\scf_logsController::scf_logs_data'
+    _title: 'S & CF Logs'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'

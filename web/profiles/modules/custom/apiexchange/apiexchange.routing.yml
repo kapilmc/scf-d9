@@ -1,11 +1,67 @@
-apiexchnage.apiexchange_form:
+# apiexchnage.system_admin:
+#   path: '/admin/config/apiexchange'
+#   defaults:
+#     _form: 'system.admin.inc'
+#     _title: 'API Exchange'
+#   requirements:    
+#     _permission : 'access administration pages'
+#     _access: 'TRUE'
+ 
+apiexchnage.system_admintesting:
+  path: '/admin/config/apiexchange'
+  defaults:
+    # _form: '\Drupal\module\system\system.admin.inc' 
+    # _form: 'core/modules/system/system.admin.inc'
+    # core/modules/system/system.admin.inc
+    # _form: 'system.admin.inc'
+    _title: 'API Exchange'
+  requirements:    
+    _permission : 'access administration pages'
+    _access: 'TRUE'
+ 
+ 
+#  $items['admin/config/apiexchange'] = array(
+#     'title' => 'API Exchange',
+#     'description' => 'Administer API Exchange.',
+#     'position' => 'left',
+#     'weight' => -10,
+#     'page callback' => 'system_admin_menu_block_page',
+#     'access arguments' => array('access administration pages'),
+#     'file' => 'system.admin.inc',
+#     'file path' => drupal_get_path('module', 'system'),
+  # );
+
+
+
+apiexchnage.apiexchange_settings_form:
   path: '/admin/config/apiexchange/configuration'
   defaults:
-    _form: '\Drupal\apiexchange\Form\ApiexchangeForm'
+    _form: '\Drupal\apiexchange\Form\apiexchange_settings_form'
     _title: 'API Common configuration'
   requirements:    
-    _permission : 'access content'
+    _permission : 'administer site configuration'
     _access: 'TRUE'
+
+
+
+apiexchnage.apiexchangeentity_list:
+  path: '/admin/config/apiexchange/list'
+  defaults:
+    _controller: '\Drupal\apiexchange\Controller\ApiexchangeController::mypage'
+    _title: 'API Exchange List'
+  requirements:    
+    _permission : 'administer apiexchange'
+    _access: 'TRUE'
+
+# apiexchnage.apiexchangeentity_list:
+#   path: '/admin/config/apiexchange/list'
+#   defaults:
+#    _form: '\Drupal\apiexchange\Form\ApiexchangeEntityForm'
+#    _title: 'API Exchange List'
+#   requirements:    
+#     _permission : 'administer apiexchange'
+#     _access: 'TRUE'
+
 
 apiexchnage.apiexchangeentity_form:
   path: '/admin/config/apiexchange/entity/add'
@@ -17,7 +73,9 @@ apiexchnage.apiexchangeentity_form:
     _access: 'TRUE'
 
 apiexchnage.apiexchangeentity_editform:
-  path: '/admin/config/apiexchange/entity/apiexchange/{id}'
+
+  path: '/admin/config/apiexchange/entity/%apiexchange'
+  # path: '/admin/config/apiexchange/entity/apiexchange/{id}'
   defaults:
    _form: '\Drupal\apiexchange\Form\ApiexchangeEntityForm'
    _title: 'Edit API'
@@ -25,11 +83,3 @@ apiexchnage.apiexchangeentity_editform:
     _permission : 'access content'
     _access: 'TRUE'
 
-apiexchnage.apiexchangeentity_list:
-  path: '/admin/config/apiexchange/list'
-  defaults:
-    _controller: '\Drupal\apiexchange\Controller\ApiexchangeController::mypage'
-    _title: 'API Exchange List / All data render'
-  requirements:    
-    _permission : 'access content'
-    _access: 'TRUE'

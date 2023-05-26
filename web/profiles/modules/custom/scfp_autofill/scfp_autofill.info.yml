@@ -1,0 +1,5 @@
+name: SCFP Predictive/autofill
+type: module
+description: "Predictive/autofill functionality for S&CF Platform."
+package: custom
+core_version_requirement: ^9 

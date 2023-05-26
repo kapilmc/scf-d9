@@ -1,0 +1,8 @@
+name: CSV Importer Sample
+type: module
+description: Sample CSV Importer Module
+core_version_requirement: ^8 || ^9 || ^10
+version: 9.x-1.0
+
+
+

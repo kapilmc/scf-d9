@@ -1,0 +1,6 @@
+name: SCFP Engagement
+type: module
+description: "SCFP Engagement"
+package: SCFP Modules
+core_version_requirement: ^9 
+configure: scfp_engagement.admin_know

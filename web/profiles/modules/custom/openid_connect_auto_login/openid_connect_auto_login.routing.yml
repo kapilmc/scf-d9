@@ -1,0 +1,8 @@
+openid_connect_auto_login.openid_connect_auto_login_form:
+  path: 'admin/config/services/openid-connect-auto-login'
+  defaults:
+    _form: '\Drupal\openid_connect_auto_login\Form\OpenidConnectForm'
+    _title: 'Openid Connect Auto Login Settings'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'

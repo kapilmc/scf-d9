@@ -1,0 +1,4 @@
+services:
+  all_reat_api.customservice:
+    class: Drupal\all_reat_api\CustomServices
+    #arguments: ['@database','@language.default','@current_user']

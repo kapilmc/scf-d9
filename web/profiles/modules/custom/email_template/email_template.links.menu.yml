@@ -1,0 +1,7 @@
+email_template.Emailtemplatedatashow:
+  title: 'Manage Email Templates'
+  description: 'Manage Email Templates'
+  parent: system.admin_config_content # want this to be system.admin_config_MYCUSTOMMENU
+  route_name: email_template.Emailtemplatedatashow
+  # weight: 100
+  # Content authoring

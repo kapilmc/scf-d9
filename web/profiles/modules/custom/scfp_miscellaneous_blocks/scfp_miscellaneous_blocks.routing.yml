@@ -1,0 +1,315 @@
+
+scfp_miscellaneous_blocks.scfp_lop_support_form:
+  path: '/admin/content/manage/scf-lop-block'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_lop_support_form'
+    _title: 'S&CF LOP Support'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_external_expert_network_form:
+  path: '/admin/content/manage/external-experts-block'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_external_expert_network_form'
+    _title: 'External Experts Network Block'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_get_help_form:
+  path: '/admin/content/manage/get-help-block'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_get_help_form'
+    _title: 'Get Help Block'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_newsletter_form:
+  path: '/admin/content/manage/manage-newsletter'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_newsletter_form'
+    _title: 'Manage Newsletters'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.scfp_get_involved_form:
+  path: '/admin/content/manage/get-involved-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_get_involved_form'
+    _title: 'Get involved configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_get_involved_autocomplete:
+  path: '/admin/content/manage/get-involved-config_autocomplete'
+  defaults:
+    _controller: '\Drupal\scfp_miscellaneous_blocks\Controller\scfp_miscellaneous_blocksController::autocomplete_get_involved'
+    _title: ' Get involved  Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+
+scfp_miscellaneous_blocks.scfp_teamup_calendar_config_form:
+  path: '/admin/content/manage/teamup-calendar-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_teamup_calendar_config_form'
+    _title: 'Teamup Calendar Configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_mini_banner_config_form:
+  path: '/admin/content/manage/mini-banner-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_mini_banner_config_form'
+    _title: 'Mini banner configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_feedback_report:
+  path: '/admin/admin-dashboard/feedback-report'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_feedback_report'
+    _title: 'Feedback Report'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.csvdownload:
+  path: '/admin/admin-dashboard/feedback-report-download'
+  defaults:
+    _controller: \Drupal\scfp_miscellaneous_blocks\Controller\DownloadCSVController::downloadCustomers
+    _title: 'Feedback Report download'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+    
+
+# scfp_miscellaneous_blocks.scfp_feedback_report:
+#   path: '/admin/admin-dashboard/feedback-report-download'
+#   defaults:
+#     _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_feedback_report'
+#     _title: 'Feedback Report'
+#   requirements:
+#     _permission: 'administer manage miscellaneous blocks'
+#     _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.scfp_competitive_insights_config_form:
+  path: '/admin/content/manage/competitive-insights'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_competitive_insights_config_form'
+    _title: 'Competitive insights configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.scfp_competitive_insights_import_form:
+  path: '/admin/content/manage/competitive-insights/import'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_competitive_insights_import_form'
+    _title: ' Competitive insights Import'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_caas_config_form:
+  path: '/admin/content/caas-page'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_caas_config_form'
+    _title: 'CaaS Site configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_featured_keywords_import_form:
+  path: '/admin/content/featured-keywords/import'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_featured_keywords_import_form'
+    _title: ' Featured Keywords Import'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.cpat_api_config_form:
+  path: '/admin/config/cpat-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\cpat_api_config_form'
+    _title: 'CPAT API Configuration'
+  requirements:
+    _permission: 'administer site configuration'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.factiva_api_config_form:
+  path: '/admin/config/factiva-api-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\factiva_api_config_form'
+    _title: 'Factiva API configuration'
+  requirements:
+    _permission: 'administer site configuration'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.key_document_config_form:
+  path: '/admin/content/key-document-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\key_document_config_form'
+    _title: 'Key document/burger menu meet our people configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_book_promotion_config_form:
+  path: '/admin/content/manage/book-promotion-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_book_promotion_config_form'
+    _title: 'Book promotion configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_collection_report:
+  path: '/admin/admin-dashboard/collection-report'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_collection_report'
+    _title: 'Collections Report'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+
+scfp_miscellaneous_blocks.scfp_heap_config_form:
+  path: '/admin/config/heap-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_heap_config_form'
+    _title: 'Heap configuration'
+  requirements:
+    _permission: 'administer site configuration'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_know_notification:
+  path: '/admin/config/know-notification-subscriptions'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_know_notification'
+    _title: 'Know notification subscriptions'
+  requirements:
+    _permission: 'administer site configuration'
+    _access: 'TRUE'
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_links_form:
+  path: '/admin/content/manage/meet-our-people-links'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_meet_our_people_links_form'
+    _title: 'Meet Our People Links'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_links_autocomplete:
+  path: '/admin/content/manage/meet-our-people-links_autocomplete'
+  defaults:
+    _controller: '\Drupal\scfp_miscellaneous_blocks\Controller\scfp_miscellaneous_blocksController::scfp_get_meet_our_people_links_autocomplete'
+    _title: ' Meet our pepole Autocomplete'   
+  requirements:
+    _permission: 'access content'
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_links_remove:
+  path: '/admin/meet-our-people/links-remove/{nid}'
+  defaults:
+    _controller: '\Drupal\scfp_miscellaneous_blocks\Controller\scfp_miscellaneous_blocksController::remove_item_from_meet_our_people_links'
+    _title: ' Meet Our People'   
+  requirements:
+    _permission: 'administer manage ordering'
+
+
+
+
+
+scfp_miscellaneous_blocks.scfp_meet_our_people_tab_form:
+  path: '/admin/config/meet-our-people-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_meet_our_people_tab_form'
+    _title: 'Meet Our People Config'
+  requirements:
+    _permission: 'administer site configuration'
+    _access: 'TRUE'
+
+
+
+
+
+
+scfp_miscellaneous_blocks.scfp_newsletter_external_link_form:
+  path: '/admin/content/manage/newsletter-external-link-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_newsletter_external_link_form'
+    _title: 'Newsletter External Links'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+scfp_miscellaneous_blocks.scfp_podcast_webcast_external_link_form:
+  path: '/admin/content/manage/podcast-webcast-external-link-config'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_podcast_webcast_external_link_form'
+    _title: 'Podcast/Webcast/Events External Link'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_miscellaneous_blocks.scfp_initiatives_form:
+  path: '/admin/content/manage/initiatives'
+  defaults:
+    _form: '\Drupal\scfp_miscellaneous_blocks\Form\scfp_initiatives_form'
+    _title: 'Initiatives configuration'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+

@@ -32,25 +32,14 @@ class hit_page_insights_form extends ConfigFormBase {
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
-    return [
-      static::SETTINGS,
-    ];
+    return ['hit_page_insights.settings'];
   }
   
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config(static::SETTINGS);
+    $config = $this->config('hit_page_insights.settings');
  
 
-    // // drupal_set_title('HIT Insights');
-    // $cat_markup = '<ul>';
-    // $cat_markup .= '<li>' . ('Overview', 'admin/hit-page/overview') . '</li>';
-    // $cat_markup .= '<li>' . ('Insights', 'admin/hit-page/overview/insights') . '</li>';
-    // $cat_markup .= '<li>' . ('HIT process', 'admin/hit-page/overview/hit-process') . '</li>';
-    // $cat_markup .= '</ul>';
-    // $form['resource_category'] = [
-    //   '#type' => 'item',
-    //   '#markup' => $cat_markup,
-    // ];
+   
     $hit_insight_descrition_1 =  $config->get('hit_insight_descrition_1', '');
     $hit_insight_descrition_2 =  $config->get('hit_insight_descrition_2', '');
     $hit_insight_descrition_3 =  $config->get('hit_insight_descrition_3', '');
@@ -138,7 +127,8 @@ class hit_page_insights_form extends ConfigFormBase {
     // dd($form_state);
 
 
-    $this->config(static::SETTINGS)
+    // $this->config(static::SETTINGS)
+    $config = $this->config('hit_page_insights.settings')
     // Set the submitted configuration setting.
     ->set('hit_page_insight_title',$form_state->getValue('hit_page_insight_title'))
 

@@ -1,0 +1,40 @@
+scfp_autofill.openid_connect_auto_login:
+  path: '/admin/managing/manage-autofill-keywords'
+  defaults:
+    _form: '\Drupal\scfp_autofill\Form\ScfpAutofillForm'
+    # _controller: '\Drupal\scfp_autofill\Controller\DeleteController::mypage'
+    _title: 'Manage autofill keywords'
+  requirements:
+    _permission : 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_autofill.edit:
+  path: '/admin/managing/manage-autofill-keywords/edit/{id}'
+  defaults:
+    _form: '\Drupal\scfp_autofill\Form\ScfpAutofillForm'
+    _title: 'Manage autofill keywords'
+  requirements:    
+    _permission : 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_autofill.delete:
+  path: '/admin/managing/manage-autofill-keywords/delete/{id}'
+  defaults:
+    _form: '\Drupal\scfp_autofill\Form\ScfpAutofillDeleteForm'
+    _title: 'Manage autofill keywords'
+  requirements:    
+    _permission : 'administer manage miscellaneous blocks'
+    _access: 'TRUE'
+
+scfp_autofill.stuff:
+  path: '/admin/structure/scfp_autofill/stuff'
+  defaults:
+    _title: 'Manage autofill keywords'
+    # _form: '\Drupal\scfp_autofill\Form\ScfpfilterForm'
+    _controller: '\Drupal\scfp_autofill\Controller\DeleteController::mypage'
+  requirements:
+    _permission: 'administer manage miscellaneous blocks'
+
+
+
+ 

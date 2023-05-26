@@ -1,0 +1,20 @@
+
+scfp_pw_migrate.remap_resource:
+  path: '/scfp-pw-migrate/batch-pw-migrate'
+  defaults:
+    # _form: '\Drupal\scfp_pw_migrate\Form\HomeNewsOrderingForm'
+    _controller: '\Drupal\scfp_pw_migrate\Controller\ScfpPwMigrateController::migratePodcastsOrWebcasts'
+    _title: 'Migate Podcasts/Webcasts'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'
+
+
+
+
+
+
+
+
+
+

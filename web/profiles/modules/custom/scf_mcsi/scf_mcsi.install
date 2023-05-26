@@ -1,0 +1,195 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall updates functions for the MCSI site.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function scf_mcsi_schema() {
+  $schema = [];
+//   if (!db_table_exists('scf_mcsi_projects_ordering')) {
+    $schema['scf_mcsi_projects_ordering'] = array(
+      'description' => 'MCSI Projects Ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'status' => array(
+          'description' => 'published or un-published',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_mcsi_faq_ordering')) {
+    $schema['scf_mcsi_faq_ordering'] = array(
+      'description' => 'MCSI FAQ Ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'status' => array(
+          'description' => 'published or un-published',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_mcsi_principles_ordering')) {
+    $schema['scf_mcsi_principles_ordering'] = array(
+      'description' => 'MCSI Principles Ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'status' => array(
+          'description' => 'published or un-published',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+//   }
+
+//   if (!db_table_exists('scf_mcsi_team_ordering')) {
+    $schema['scf_mcsi_team_ordering'] = array(
+      'description' => 'MCSI Team ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier core team.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'first_alert' => array(
+          'description' => 'First Alert(1) or Core Team(0)',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('coreteam' => array('nid')),
+    );
+//   }
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function scf_mcsi_install() {
+  drupal_set_installed_schema_version('scf_mcsi', '7000');
+}
+
+/**
+ * Create table scf_mcsi_projects_ordering
+ * Implements hook_update_N().
+ */
+function scf_mcsi_update_7001(&$sandox) {
+  if (!db_table_exists('scf_mcsi_projects_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('scf_mcsi');
+      db_create_table('scf_mcsi_projects_ordering', $schema['scf_mcsi_projects_ordering']);
+    }
+    catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create scf_mcsi_projects_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table scf_mcsi_team_ordering
+ * Implements hook_update_N().
+ */
+function scf_mcsi_update_7002(&$sandox) {
+  if (!db_table_exists('scf_mcsi_team_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('scf_mcsi');
+      db_create_table('scf_mcsi_team_ordering', $schema['scf_mcsi_team_ordering']);
+    }
+    catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create scf_mcsi_team_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table scf_mcsi_faq_ordering
+ * Implements hook_update_N().
+ */
+function scf_mcsi_update_7003(&$sandox) {
+  if (!db_table_exists('scf_mcsi_faq_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('scf_mcsi');
+      db_create_table('scf_mcsi_faq_ordering', $schema['scf_mcsi_faq_ordering']);
+    }
+    catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create scf_mcsi_faq_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table scf_mcsi_principles_ordering
+ * Implements hook_update_N().
+ */
+function scf_mcsi_update_7004(&$sandox) {
+  if (!db_table_exists('scf_mcsi_principles_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('scf_mcsi');
+      db_create_table('scf_mcsi_principles_ordering', $schema['scf_mcsi_principles_ordering']);
+    }
+    catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create scf_mcsi_principles_ordering table.');
+    }
+  }
+}

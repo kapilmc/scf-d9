@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the block module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function csvImporter_schema() {
+    $schema['csvImporter'] = array(
+        'description' => 'Economic Indicators data.',
+        'fields' => array(
+            'country' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => TRUE,
+                'description' => 'Country Name.',
+            ),
+            'indicator_name' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => "Indicator name for the country. This will be one of the filter criteria for the block.",
+            ),
+            'scenarios_name' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => TRUE,
+                'description' => 'Scenario name.',
+                'default' => '',
+            ),
+            'units' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => 'The theme under which the block settings apply.',
+            ),
+          'display_units' => array(
+            'type' => 'varchar',
+            'length' => 64,
+            'not null' => TRUE,
+            'default' => '',
+            'description' => 'Display Units.',
+          ),
+            'is_country' => array(
+              'type' => 'int',
+              'not null' => TRUE,
+              'default' => 1,
+              'description' => 'Region/Country distinction',
+            ),
+          'year' => array(
+            'type' => 'varchar',
+            'length' => 64,
+            'not null' => TRUE,
+            'description' => 'year',
+          ),
+          'value' => array(
+            'type' => 'varchar',
+            'not null' => TRUE,
+            'description' => 'Value corresponding to Year',
+            'length' => 64,
+          ),
+        ),
+    );
+
+    return $schema;
+
+
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function csvImporter_install() {
+  // Remove tables.
+  drupal_install_schema('csvImporter');
+}
+
+
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function csvImporter_uninstall() {
+// Remove tables.
+    drupal_uninstall_schema('csvImporter');
+}

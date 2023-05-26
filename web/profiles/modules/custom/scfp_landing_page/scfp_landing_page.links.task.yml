@@ -1,0 +1,19 @@
+
+scfp_landing_page.HomeTopTopicsOrderingForm:
+  route_name : scfp_landing_page.HomeTopTopicsOrderingForm
+  title: Manage  home page hot topics 
+  base_route: scfp_landing_page.HomeTopTopicsOrderingForm
+  weight: 1
+
+
+scfp_landing_page.HomeTopResourcesOrderingForm:
+  route_name : scfp_landing_page.HomeTopResourcesOrderingForm
+  title: Manage  home page top resources
+  base_route: scfp_landing_page.HomeTopTopicsOrderingForm
+  weight: 2
+
+scfp_landing_page.HomeNewsOrderingForm:
+  route_name : scfp_landing_page.HomeNewsOrderingForm
+  title: Manage  home page news 
+  base_route: scfp_landing_page.HomeTopTopicsOrderingForm
+  weight: 3

@@ -15,7 +15,7 @@ use Drupal\file\Entity\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Form\ConfigFormBase;
 
-class hit_page_impact_form extends FormBase {
+class hit_page_impact_form extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
@@ -24,7 +24,14 @@ class hit_page_impact_form extends FormBase {
     return 'hit_page_impact_form';
   }
   
+  protected function getEditableConfigNames()
+  {
+      return ['hit_page_impact.settings'];
+  }
+
+
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->config('hit_page_impact.settings');
   
     $query = \Drupal::database()->select('scf_hit_page_impact_ordering', 'r');
     $query->join('node_field_data', 'n', 'r.nid = n.nid');
@@ -55,6 +62,17 @@ class hit_page_impact_form extends FormBase {
 
   
     $form['items']['#tree'] = true;
+
+
+    $form['hit_page_impact_title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#default_value' => $config->get('hit_page_impact_title'),
+      '#weight' => -1,
+    );
+
+
+
     for ($i = 0; $i < $form_state->getValue('num_rows'); $i++) {
       
       $item = isset($data[$i]) ? $data[$i] : NULL;
@@ -134,15 +152,11 @@ public function add_impact_video(array &$form, FormStateInterface $form_state) {
 
  
   public function submitForm(array &$form, FormStateInterface $form_state) {
+  
 
-  //   // dd($form_state->getValues());
-
-  //   $data = [
-  //     'hit_page_impact_title'=>$form_state->getValue('hit_page_impact_title'),
-   
-
-  // ];
   $data = $form_state->getValues();
+  $this->config('hit_page_impact.settings')
+  ->set('hit_page_impact_title',  $data['hit_page_impact_title'])->save();
   // dd($data);
 
     foreach ($data['items'] as $id => $item) {

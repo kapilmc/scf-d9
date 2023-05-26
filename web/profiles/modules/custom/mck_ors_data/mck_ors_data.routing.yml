@@ -1,0 +1,8 @@
+mck_ors_data.mck_ors_dataupdateform:
+  path: '/admin/config/ors-data/ors-data-update'
+  defaults:
+    _form: '\Drupal\mck_ors_data\Form\mck_ors_data_admin_form'
+    _title: 'ORS Data'
+  requirements:
+    _permission: 'access content'
+    _access: 'TRUE'

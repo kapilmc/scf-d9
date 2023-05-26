@@ -1,0 +1,233 @@
+ <?php
+
+/**
+ * @file
+ * Install, update, and uninstall updates functions for the CDHPage.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+
+
+
+// /**
+//  * Installs the database schema.
+//  */
+// function custom_module_install() {
+//   drupal_install_schema('mailing_list');
+// }
+
+// /**
+//  * Uninstalls the database schema.
+//  */
+// function custom_module_uninstall() {
+//   drupal_uninstall_schema('mailing_list');
+// }
+
+
+
+ 
+function cdh_page_schema()
+{
+  $schema = [];
+  // if (!db_table_exists('cdh_page_involved_ordering')) {
+    $schema['cdh_page_involved_ordering'] = array(
+      'description' => 'CDH Involved Videos Ordering.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'status' => array(
+          'description' => 'published or un-published',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('nid'),
+    );
+  // }
+  // if (!db_table_exists('cdh_team_ordering')) {
+    $schema['cdh_team_ordering'] = array(
+      'description' => 'CDH Team ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier cdh team.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'key_contact' => array(
+          'description' => 'Key contact(1) or core Team(0)',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('cdhteam' => array('nid')),
+    );
+  // }
+  // if (!db_table_exists('cdh_first_alert_ordering')) {
+    $schema['cdh_first_alert_orderingg'] = array(
+      'description' => 'CDH First Alert Ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier cdh team.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'key_contact' => array(
+          'description' => 'Key contact(1) or core Team(0)',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('cdhteam' => array('nid')),
+    );
+  // }
+//  if (!db_table_exists('cdh_analyst_support_ordering')) {
+    $schema['cdh_analyst_support_ordering'] = array(
+      'description' => 'CDH Dedicated S&CF CDH analyst support ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier cdh team.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'key_contact' => array(
+          'description' => 'Key contact(1) or core Team(0)',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('cdhteam' => array('nid')),
+    );
+  // }
+ 
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function cdh_page_install()
+{
+  drupal_set_installed_schema_version('cdh_page', '9000');
+}
+
+/**
+ * Create table cdh_page_involved_ordering
+ * Implements hook_update_N().
+ */
+function cdh_page_update_9001(&$sandox)
+{
+  if (!db_table_exists('cdh_page_involved_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('cdh_page');
+      db_create_table('cdh_page_involved_ordering', $schema['cdh_page_involved_ordering']);
+    } catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create cdh_page_involved_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table cdh_team_ordering
+ * Implements hook_update_N().
+ */
+function cdh_page_update_9002(&$sandox)
+{
+  if (!db_table_exists('cdh_team_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('cdh_page');
+      db_create_table('cdh_team_ordering', $schema['cdh_team_ordering']);
+    } catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create cdh_team_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table cdh_analyst_support_ordering
+ * Implements hook_update_N().
+ */
+function cdh_page_update_9003(&$sandox)
+{
+  if (!db_table_exists('cdh_analyst_support_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('cdh_page');
+      db_create_table('cdh_analyst_support_ordering', $schema['cdh_analyst_support_ordering']);
+    } catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create cdh_analyst_support_ordering table.');
+    }
+  }
+}
+
+/**
+ * Create table cdh_first_alert_ordering
+ * Implements hook_update_N().
+ */
+function cdh_page_update_9004(&$sandox)
+{
+
+  if (!db_table_exists('cdh_first_alert_ordering')) {
+    try {
+      $schema = drupal_get_schema_unprocessed('cdh_page');
+      db_create_table('cdh_first_alert_ordering', $schema['cdh_first_alert_ordering']);
+    } catch (Exception $e) {
+      throw new DrupalUpdateException('Unable to create cdh_first_alert_ordering table.');
+    }
+  }
+}
+
+

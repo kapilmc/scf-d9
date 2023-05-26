@@ -1,0 +1,44 @@
+openid_connect.openid_connect_admin_form:
+  path: '/admin/config/services/openid-connect'
+  defaults:
+    _form: '\Drupal\openid_connect\Form\openid_connect_admin_form'
+    _title: 'OpenID Connect'
+  requirements:    
+    _permission : 'configure openid connect clients'
+    _access: 'TRUE'
+
+
+# openid_connect.openid_connect_forms:
+#   path: '/OPENID_CONNECT_REDIRECT_PATH_BASE . '/%'
+#   defaults:
+#     _form: '\Drupal\openid_connect\Form\openid_connect_pages_form'
+#     _title: 'OpenID Connect redirect page'
+#   requirements:    
+#     _permission : 'configure openid connect clients'
+#     _access: 'TRUE'
+
+
+
+
+
+
+
+  # $items[OPENID_CONNECT_REDIRECT_PATH_BASE . '/%'] = array(
+  #   'title' => 'OpenID Connect redirect page',
+  #   'page callback' => 'openid_connect_redirect_page',
+  #   'page arguments' => array(1),
+  #   //'access callback' => 'openid_connect_redirect_access',
+  #   'access callback' => TRUE,
+  #   'type' => MENU_CALLBACK,
+  #   'file' => 'includes/openid_connect.pages.inc'
+  # );
+  # $items['user/%user/connected-accounts'] = array(
+  #   'title' => 'Connected accounts',
+  #   'page callback' => 'drupal_get_form',
+  #   'page arguments' => array('openid_connect_connect_form', 1),
+  #   'access callback' => 'openid_connect_connected_accounts_access',
+  #   'access arguments' => array(1),
+  #   'type' => MENU_LOCAL_TASK,
+  #   'weight' => 5,
+  #   'file' => 'includes/openid_connect.forms.inc'
+  # );

@@ -1,0 +1,57 @@
+<?php
+/**
+ * Implements hook_schema().
+ **/
+ function scfp_autofill_schema() {
+   $schema =[];
+     $schema['scfp_autofill'] = array(
+       'description' => 'Predictive/autofill keywords.',
+       'fields' => array(
+         'id' => array(
+           'description' => 'The primary identifier for a keywords.',
+           'type' => 'serial',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'title' => array(
+           'description' => 'The keyword',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => TRUE,
+           'default' => '',
+         ),
+         'created' => array(
+           'description' => 'The Unix timestamp when the keyword was created.',
+           'type' => 'int',
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'changed' => array(
+           'description' => 'The Unix timestamp when the keyword was most recently saved.',
+           'type' => 'int',
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'count' => array(
+           'description' => 'The count of keyword used in search.',
+           'type' => 'int',
+           'unsigned' => FALSE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+       ),
+       'indexes' => array(
+         'title' => array('title'),
+         'count' => array('count'),
+       ),
+       'primary key' => array('id'),
+     );
+   return $schema;
+ }
+
+/**
+ * Implements hook_uninstall().
+ */
+function scfp_autofill_uninstall() {
+    drupal_uninstall_schema('scfp_autofill');
+}

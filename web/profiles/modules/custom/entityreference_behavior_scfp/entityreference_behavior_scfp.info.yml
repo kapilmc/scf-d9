@@ -1,0 +1,11 @@
+name: Entity Reference Behavior SCFP
+type: module
+description: Provides implementing Entity Reference behaviors.
+core_version_requirement: ^8.8 || ^9
+package: custom
+version: 9.x-1.0
+
+
+
+
+

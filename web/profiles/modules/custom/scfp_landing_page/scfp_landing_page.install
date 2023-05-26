@@ -1,0 +1,150 @@
+<?php
+/**
+ * @file
+ * Contains variables and installation info.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function scfp_landing_page_schema() {
+  $schema['scf_home_page_hot_topics_ordering'] = array(
+      'description' => 'Home page hot topics ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for hot topics links.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'tid' => array(
+          'description' => 'The topic id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => FALSE,
+          'default' => 0,
+        ),
+        'title' => array(
+          'description' => 'The title of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'link' => array(
+          'description' => 'The url of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+
+    $schema['scf_home_page_top_resources_ordering'] = array(
+      'description' => 'Home page top resources ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for a Meet our people links.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'title' => array(
+          'description' => 'The title of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'link' => array(
+          'description' => 'The url of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+
+    $schema['scf_home_page_news_ordering'] = array(
+      'description' => 'Home page news ordering.',
+      'fields' => array(
+        'id' => array(
+          'description' => 'The primary identifier for a news.',
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ),
+        'fid' => array(
+          'description' => 'The image file id.',
+          'type' => 'int',
+          'not null' => FALSE,
+          'default' => 0,
+          'unsigned' => TRUE,
+        ),
+        'link' => array(
+          'description' => 'The url of link.',
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+          'default' => '',
+        ),
+        'weight' => array(
+          'description' => 'The ordering of content.',
+          'type' => 'int',
+          'unsigned' => FALSE,
+          'not null' => TRUE,
+        ),
+        'enabled' => array(
+          'description' => 'active or inactive',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+        'external' => array(
+          'description' => 'External url',
+          'type' => 'int',
+          'unsigned' => TRUE,
+        ),
+      ),
+      'primary key' => array('id'),
+      'indexes' => array('enabled' => array('enabled')),
+    );
+
+  return $schema;
+}
+
+/*
+ * Implements hook_uninstall().
+ */
+function scfp_landing_page_uninstall() {
+  drupal_uninstall_schema('scf_home_page_hot_topics_ordering');
+  drupal_uninstall_schema('scf_home_page_top_resources_ordering');
+  drupal_uninstall_schema('scf_home_page_news_ordering');
+}

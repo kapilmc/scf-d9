@@ -1,0 +1,13 @@
+name: SCF Leading edge articles
+type: module
+description: SCF Leading edge articles to fetch articles data from SFTP server and import articles in HBR
+package: SCF
+core_version_requirement: ^8 || ^9 
+version: 9.x-1.0
+
+
+
+
+
+
+

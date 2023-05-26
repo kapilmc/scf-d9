@@ -1,0 +1,6 @@
+name: CDH Page
+type: module
+description: "CDH Page"
+package: CDH
+core_version_requirement: ^9 
+configure: cdh_page.overview_form

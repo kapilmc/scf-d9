@@ -1,0 +1,8 @@
+scfp_solr.ScfpSolrForm:
+  path: 'admin/config/scfp-solr'
+  defaults:
+    _form: '\Drupal\scfp_solr\Form\ScfpSolrForm'
+    _title: 'S&CF Solr Configuration'
+  requirements:    
+    _permission : 'access content'
+    _access: 'TRUE'

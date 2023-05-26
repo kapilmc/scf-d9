@@ -1,0 +1,63 @@
+cdh_page.overview_form:
+  title: Manage CDH Page
+  parent: system.admin
+  route_name: cdh_page.cdh_page_overview_form
+  weight: 0
+
+cdh_page.cdh_page_overview_form:
+  title: What is a CDH ?
+  parent: cdh_page.overview_form
+  route_name: cdh_page.cdh_page_overview_form
+  weight: 1
+
+cdh_page.cdh_page_proposition_form:
+  title: Proposition Overview
+  parent: cdh_page.cdh_page_overview_form
+  route_name: cdh_page.cdh_page_proposition_form
+  weight: 0
+
+
+
+cdh_page.cdh_page_Offering_form:
+  title: Offering Overview
+  parent: cdh_page.overview_form
+  route_name: cdh_page.cdh_page_Offering_form
+  weight: 2 
+
+cdh_page.cdh_page_involved_form:
+  title: How To Get Involved
+  parent: cdh_page.overview_form
+  route_name: cdh_page.cdh_page_involved_form
+  weight: 3
+
+cdh_page.cdh_page_reach_out_form:
+  title: Reach Out
+  parent: cdh_page.cdh_page_involved_form
+  route_name: cdh_page.cdh_page_reach_out_form
+  weight: 1
+
+cdh_page.cdh_page_impact_form:
+  title: Impact
+  parent: cdh_page.overview_form
+  route_name: cdh_page.cdh_page_impact_form
+  weight: 4
+
+cdh_page.cdh_page_cdh_team_form:
+  title: Core Team
+  parent: cdh_page.overview_form
+  route_name: cdh_page.cdh_page_cdh_team_form
+  weight: 5
+
+cdh_page.cdh_page_first_alert_form:
+  title: First Alert
+  parent: cdh_page.cdh_page_cdh_team_form
+  route_name: cdh_page.cdh_page_first_alert_form
+  weight: 1
+
+cdh_page.cdh_page_cdh_analyst_support_form:
+  title: Dedicated S&CF CDH Analyst Support
+  parent: cdh_page.cdh_page_cdh_team_form
+  route_name: cdh_page.cdh_page_cdh_analyst_support_form
+  weight: 2
+
+

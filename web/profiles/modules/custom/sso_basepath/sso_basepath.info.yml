@@ -1,0 +1,11 @@
+name: Fix for sso base path
+type: module
+description: This is a fix for sso base path in ajax and autocomplete. 
+core_version_requirement: ^8.8 || ^9
+package: custom
+version: 9.x-1.0
+weight: 1000
+
+
+
+

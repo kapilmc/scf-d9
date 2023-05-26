@@ -1,0 +1,65 @@
+<?php
+/**
+* Implements hook_schema().
+* ors_id, name, email, engagement_id, created, person_id, status
+*/
+function mck_ors_data_schema() {
+    $schema['ors_user_engagement'] = array(
+     'description' => 'custom table for ors user enagament',
+     'fields' => array(
+         'ors_id' => array(
+           'description' => 'The serial ID.',
+           'type' => 'serial',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+         ),
+         'name' => array(
+           'description' => 'The name of user.',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => FALSE,
+         ),
+         'email' => array(
+           'description' => 'The email of user.',
+           'type' => 'varchar',
+           'length' => 255,
+           'not null' => FALSE,
+         ),
+         'engagement_id' => array(
+           'description' => 'The engagement_id',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'created' => array(
+           'description' => 'The timestamp of invited',
+           'type' => 'int',
+           'unsigned' => TRUE,
+         ),
+         'person_id' => array(
+           'description' => 'The person_id of user.',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+         'status' => array(
+           'description' => 'The status 1 for accepted, 0 for unaccepted',
+           'type' => 'int',
+           'unsigned' => TRUE,
+           'not null' => TRUE,
+           'default' => 0,
+         ),
+     ),
+     'primary key' => array('ors_id'),
+    );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function mck_ors_data_uninstall() {
+    drupal_uninstall_schema('ors_user_engagement');
+}

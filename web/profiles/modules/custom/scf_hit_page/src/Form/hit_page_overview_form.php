@@ -32,25 +32,16 @@ class hit_page_overview_form extends ConfigFormBase {
    * {@inheritdoc}
    */
   protected function getEditableConfigNames() {
-    return [
-      static::SETTINGS,
-    ];
+   
+      return ['hit_page_overview.settings'];
+    
   }
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config(static::SETTINGS);
+    $config = $this->config('hit_page_overview.settings');
  
 
 
-    
-    // $cat_markup = '<ul>';
-    // $cat_markup .= '<li>' . l('Overview', 'admin/hit-page/overview') . '</li>';
-    // $cat_markup .= '<li>' . l('Insights', 'admin/hit-page/overview/insights') . '</li>';
-    // $cat_markup .= '<li>' . l('HIT process', 'admin/hit-page/overview/hit-process') . '</li>';
-    // $cat_markup .= '</ul>';
-    // $form['resource_category'] = [
-    //   '#type' => 'item',
-    //   '#markup' => $cat_markup,
-    // ];
+  
     $overview = $config->get('hit_page_overview', '');
     $form['hit_page_overview_title'] = array(
       '#type' => 'textfield',
@@ -64,6 +55,14 @@ class hit_page_overview_form extends ConfigFormBase {
       '#default_value' => isset($overview['value']) ? $overview['value'] : '',
       '#rows' => 6,
     );
+
+    $form['hit_page_overview_footer_text'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Footer Text'),
+      '#default_value' => $config->get('hit_page_overview_footer_text'),
+    );
+
+
     $form['actions']['save'] = array(
       '#type' => 'submit',
       '#value' => t('Save Changes'),
@@ -81,27 +80,15 @@ class hit_page_overview_form extends ConfigFormBase {
 
  
   public function submitForm(array &$form, FormStateInterface $form_state) {
-// Retrieve the configuration.
-$this->config(static::SETTINGS)
-// Set the submitted configuration setting.
-->set('hit_page_overview_title',$form_state->getValue('hit_page_overview_title'))
-->set('hit_page_overview', $form_state->getValue('hit_page_overview'))
-->save();
+    foreach ($form_state->getValues() as $key => $value) {
+      $this->config('hit_page_overview.settings')
+          ->set($key, $value)->save();
 
-// parent::submitForm($form, $form_state);
+      // parent::submitForm($form, $form_state);
       \Drupal::messenger()->addMessage('Form has been saved successfully');
-  
-  
+  }
   }
 
-
-
-// function _hit_page_overview_form($form, &$form_state) {
-//   $val = $form_state['values'];
-//   alt_vars_set('hit_page_overview', $val['hit_page_overview']);
-//   alt_vars_set('hit_page_overview_title', $val['hit_page_overview_title']);
-//   drupal_set_message('Form has been saved successfully');
-// }
 
 
 

@@ -1,0 +1,7 @@
+name: SCF MCSI
+type: module
+description: SCF MSCI
+package: SCF
+core_version_requirement: ^8 || ^9 
+version: 9.x-1.0
+configure: scf_mcsi.mcsi_overview_form

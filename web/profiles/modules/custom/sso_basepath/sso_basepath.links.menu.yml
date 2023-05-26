@@ -1,0 +1,5 @@
+sso_basepath.sso_basepath_admin_form:
+  title: SSO Base Path settings
+  parent: system.admin_config
+  route_name: sso_basepath.sso_basepath_admin_form
+  

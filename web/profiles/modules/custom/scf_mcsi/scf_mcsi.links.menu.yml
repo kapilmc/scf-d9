@@ -1,0 +1,52 @@
+scf_mcsi.mcsi_manage_mcci_content:
+  title: Manage MSCI Content
+  parent: system.admin
+  route_name: scf_mcsi.mcsi_overview_form
+  weight: 0
+
+
+scf_mcsi.mcsi_overview_form:
+  title: Overview
+  parent: scf_mcsi.mcsi_manage_mcci_content
+  route_name: scf_mcsi.mcsi_overview_form
+  weight: 1
+
+scf_mcsi.mcsi_principles_form:
+  title: Principles
+  parent: scf_mcsi.mcsi_overview_form
+  route_name: scf_mcsi.mcsi_principles_form
+
+scf_mcsi.mcsi_projects_form:
+  title: Projects
+  parent: scf_mcsi.mcsi_manage_mcci_content
+  route_name: scf_mcsi.mcsi_projects_form 
+  weight: 2
+
+
+scf_mcsi.mcsi_get_involved_form:
+  title: How to get involved
+  parent: scf_mcsi.mcsi_manage_mcci_content
+  route_name: scf_mcsi.mcsi_get_involved_form
+  weight: 3
+
+scf_mcsi.mcsi_faq_form:
+  title: FAQ
+  parent: scf_mcsi.mcsi_get_involved_form
+  route_name: scf_mcsi.mcsi_faq_form
+
+scf_mcsi.mcsi_core_team_form:
+  title: Core Team
+  parent: scf_mcsi.mcsi_manage_mcci_content
+  route_name: scf_mcsi.mcsi_core_team_form
+  weight: 4
+
+scf_mcsi.mcsi_first_alert_form:
+  title: First Alert
+  parent: scf_mcsi.mcsi_core_team_form
+  route_name: scf_mcsi.mcsi_first_alert_form
+
+
+
+
+
+

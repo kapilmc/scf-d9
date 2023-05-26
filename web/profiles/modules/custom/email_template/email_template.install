@@ -1,0 +1,64 @@
+<?php
+/**
+ * @file
+ * Contains variables and installation info.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function email_template_schema() {
+  $schema['email_template_details'] = array(
+    'description' => 'email template',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The serial ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The name of email template.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'body' => array(
+        'description' => 'The body of email template.',
+        'type' => 'text',
+        'not null' => FALSE,
+        'default' => NULL,
+        'size' => 'medium',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+// function email_template_install() {
+//   $invitation = new stdClass();
+//   $invitation->name = 'send invitation template';
+//   $invitation->body = '';
+//   drupal_write_record('email_template_details', $invitation);
+
+//   $accepted = new stdClass();
+//   $accepted->name = 'accept invitation template';
+//   $accepted->body = '';
+//   drupal_write_record('email_template_details', $accepted);
+
+//   $invitation_time = new stdClass();
+//   $invitation_time->name = 'send invitation template time dependent';
+//   $invitation_time->body = '';
+//   drupal_write_record('email_template_details', $invitation_time);
+// }
+
+// /*
+//  * Implements hook_uninstall().
+//  */
+// function email_template_uninstall() {
+//   drupal_uninstall_schema('email_template');
+// }
